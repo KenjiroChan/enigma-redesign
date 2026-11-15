@@ -27,7 +27,7 @@ input[type=text],input[type=tel],input[type=email]{min-height:50px;padding:0 14p
 :focus-visible{outline:3px solid #C9B3FF;outline-offset:2px}
 @media (max-width:720px){h1{font-size:40px !important}.wrap{padding:24px 18px !important}}
 </style>
-<link rel="stylesheet" href="mobile.css?v=3">
+<link rel="stylesheet" href="mobile.css?v=4">
 <style>@media (max-width:720px){.slots{flex-wrap:nowrap !important;overflow-x:auto !important;width:100%;scrollbar-width:none}.slots::-webkit-scrollbar{display:none}.slots>*{flex:0 0 auto}}</style>
 </head>
 <body>
@@ -47,13 +47,16 @@ input[type=text],input[type=tel],input[type=email]{min-height:50px;padding:0 14p
 </div>
 <div class="mbar" id="mbar"></div>
 <script>
-const DAYS=[['Sun',15],['Mon',16],['Tue',17],['Wed',18],['Thu',19],['Fri',20],['Sat',21]];
+const _MON=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'], _DOW=['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
+const DAYS=Array.from({length:7},(_,i)=>{const t=new Date();t.setHours(12,0,0,0);t.setDate(t.getDate()+i);return [_DOW[t.getDay()],t.getDate(),_MON[t.getMonth()],t.getDay(),i===0?'Today':(i===1?'Tmrw':_DOW[t.getDay()])];});
+const _toMin=t=>{const m=t.match(/(\d+):(\d+) (am|pm)/);let h=+m[1]%12;if(m[3]==='pm')h+=12;return h*60+(+m[2]);};
+const _Q=new URLSearchParams(location.search);
 const TIMES=['11:30 am','12:45 pm','2:00 pm','3:15 pm','4:30 pm','5:45 pm','7:00 pm','8:15 pm','9:30 pm','10:45 pm'];
 const V={adv:['I','NOT SCARY','#15241B','#8FC7A4'],dark:['II','SCARY','#2A1612','#EE7F68'],cube:['III','CUBE','#151C26','#9DB8D9']};
 const W={3:'Medium',4:'Hard',5:'Expert'};
 const ROOMS=[['01','Jungle Safari','adv',5,2,10],['02','The Lost Treasure','adv',3,2,10],['03','Godfather','adv',4,2,10],['04','Haunted Toy Store','dark',3,2,9],['05','Hannibal','dark',5,2,9],['06','Exorcist','dark',4,2,10],['07','Bomb Squad','cube',5,2,3],['08','Fairytale','cube',4,2,7],['09','Magic School','cube',5,2,7]];
 const VIBES=[['any','Either'],['adv','Not scary'],['dark','Scary'],['cube','Escape Cubes']];
-const S={step:1,day:5,players:6,vibe:'any',room:null,time:null,pay:'deposit'};
+const S={step:1,day:Math.min(6,Math.max(0,+(_Q.get('d')||0))),players:Math.min(10,Math.max(2,+(_Q.get('p')||6))),vibe:['any','adv','dark','cube'].includes(_Q.get('v'))?_Q.get('v'):'any',room:null,time:null,pay:'deposit'};
 const PRICE=37.99, HST=0.13, DEPOSIT_PLAYERS=2;
 const money=n=>'$'+n.toFixed(2);
 const set=p=>{Object.assign(S,p);render();};
@@ -65,11 +68,11 @@ function render(){
   document.getElementById('steps').innerHTML=[[1,'Pick a time'],[2,'Your details'],[3,'Confirmed']].map(([n,l])=>`<li ${S.step===n?'aria-current="step"':''} style="display: flex; align-items: center; gap: 8px; color: ${col(n)}"><span class="mono" style="width: 26px; height: 26px; border-radius: 50%; border: 1.5px solid ${col(n)}; display: inline-flex; align-items: center; justify-content: center; font-size: 12px">${n}</span><span class="lbltxt">${l}</span></li>`).join('');
   const M=document.getElementById('main');
   if(S.step===1){
-    const weekday=S.day>=1&&S.day<=4;
+    const weekend=d[3]===0||d[3]===6, nowMin=new Date().getHours()*60+new Date().getMinutes();
     const fits=r=>S.players>=r[4]&&S.players<=r[5], byV=r=>S.vibe==='any'||r[2]===S.vibe;
     const list=ROOMS.filter(r=>fits(r)&&byV(r));
     const rooms=list.map((r,ri)=>{const v=V[r[2]];
-      const open=TIMES.map((t,ti)=>({t,ti})).filter(o=>(weekday?o.ti>=1:true)&&((o.ti*7+ri*3+S.day*5)%4!==0)).slice(0,5);
+      const open=TIMES.map((t,ti)=>({t,ti})).filter(o=>(weekend||o.ti>=2)&&(S.day!==0||_toMin(o.t)>nowMin+30)&&((o.ti*7+ri*3+S.day*5)%4!==0)).slice(0,5);
       const slots=open.map(o=>{const on=S.room===r[1]&&S.time===o.t;return `<button type="button" class="lamp ${on?'on':'off'}" aria-pressed="${on}" aria-label="${esc(r[1])} at ${o.t}" data-room="${esc(r[1])}" data-time="${o.t}">${o.t}</button>`}).join('');
       return `<div class="bk-room" style="background: #16131D; border: 1px solid #372F47; border-radius: 12px; padding: 16px 18px; display: flex; flex-wrap: wrap; align-items: center; gap: 18px">
 <div style="flex: 1 1 210px; min-width: 0; display: flex; flex-direction: column; gap: 4px"><span class="lbl" style="letter-spacing: 0.1em">ROTOR ${v[0]} · No.${r[0]}</span><span class="disp" style="font-size: 28px; line-height: 1">${r[1]}</span>
@@ -78,7 +81,7 @@ function render(){
     const small=ROOMS.filter(r=>byV(r)&&!fits(r)).map(r=>`<div style="border: 1px dashed #372F47; border-radius: 12px; padding: 14px 18px; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px; color: #A79FBA; font-size: 15px"><span><b style="color: #CEC6DD">${r[1]}</b> fits ${r[4]}–${r[5]} players</span><span>Not shown for a group of ${S.players}</span></div>`).join('');
     M.innerHTML=`<h1 class="disp" style="margin: 0 0 22px; font-size: 50px; line-height: 0.95">When are you free, and how many are coming?</h1>
 <div class="bk-controls" style="display: flex; flex-wrap: wrap; gap: 22px 32px; align-items: flex-end; padding-bottom: 24px; border-bottom: 1px solid #2A2436">
-<div role="group" aria-label="Date" style="display: flex; flex-direction: column; gap: 8px"><span class="lbl">DATE</span><div class="hscroll" style="display: flex; flex-wrap: wrap; gap: 6px">${DAYS.map((x,i)=>`<button type="button" class="key day ${S.day===i?'on':'off'}" aria-pressed="${S.day===i}" data-day="${i}"><span ${S.day===i?'':'style="color: #A79FBA"'}>${x[0]}</span><b>${x[1]}</b></button>`).join('')}</div></div>
+<div role="group" aria-label="Date" style="display: flex; flex-direction: column; gap: 8px"><span class="lbl">DATE</span><div class="hscroll" style="display: flex; flex-wrap: wrap; gap: 6px">${DAYS.map((x,i)=>`<button type="button" class="key day ${S.day===i?'on':'off'}" aria-pressed="${S.day===i}" data-day="${i}" aria-label="${x[0]}, ${x[2]} ${x[1]}"><span ${S.day===i?'':'style="color: #A79FBA"'}>${x[4]}</span><b>${x[1]}</b></button>`).join('')}</div></div>
 <div role="group" aria-label="Players" style="display: flex; flex-direction: column; gap: 8px"><span class="lbl">PLAYERS</span>
 <div style="display: flex; align-items: center; gap: 6px; background: #1F1A29; border: 1px solid #372F47; border-radius: 8px; padding: 5px">
 <button type="button" id="minus" aria-label="One fewer player" style="width: 48px; height: 54px; border: 0; border-radius: 6px; background: #2A2436; color: #F1ECF8; font-size: 24px; cursor: pointer">−</button>
@@ -86,7 +89,7 @@ function render(){
 <button type="button" id="plus" aria-label="One more player" style="width: 48px; height: 54px; border: 0; border-radius: 6px; background: #2A2436; color: #F1ECF8; font-size: 24px; cursor: pointer">+</button></div></div>
 <div role="group" aria-label="Scary or not" style="display: flex; flex-direction: column; gap: 8px"><span class="lbl">SCARY?</span><div class="hscroll" style="display: flex; flex-wrap: wrap; gap: 6px">${VIBES.map(([id,l])=>`<button type="button" class="key chip ${S.vibe===id?'on':'off'}" aria-pressed="${S.vibe===id}" data-vibe="${id}">${l}</button>`).join('')}</div></div>
 </div>
-<p aria-live="polite" style="margin: 20px 0 14px; color: #CEC6DD">${list.length} rooms have open times on ${d[0]}, Nov ${d[1]} for a group of ${S.players}.</p>
+<p aria-live="polite" style="margin: 20px 0 14px; color: #CEC6DD">${list.length} rooms have open times on ${d[0]}, ${d[2]} ${d[1]} for a group of ${S.players}.</p>
 <div style="display: flex; flex-direction: column; gap: 12px">${rooms}${small}</div>`;
     M.querySelectorAll('[data-day]').forEach(b=>b.onclick=()=>set({day:+b.dataset.day,room:null,time:null}));
     M.querySelectorAll('[data-vibe]').forEach(b=>b.onclick=()=>set({vibe:b.dataset.vibe,room:null,time:null}));
@@ -101,11 +104,12 @@ function render(){
 <label style="display: flex; flex-direction: column; gap: 6px; font-size: 15px; color: #CEC6DD">Full name<input type="text" autocomplete="off" placeholder="Your name"></label>
 <label style="display: flex; flex-direction: column; gap: 6px; font-size: 15px; color: #CEC6DD">Mobile number<input type="tel" autocomplete="off" placeholder="416-555-0142"></label>
 <label style="grid-column: 1 / -1; display: flex; flex-direction: column; gap: 6px; font-size: 15px; color: #CEC6DD">Email for your confirmation<input type="email" autocomplete="off" placeholder="you@example.com"></label>
+<label style="grid-column: 1 / -1; display: flex; flex-direction: column; gap: 6px; font-size: 15px; color: #CEC6DD">Accessibility needs or anything we should know (optional)<input type="text" autocomplete="off" placeholder="e.g. we\'ll need the elevator"></label>
 <p style="grid-column: 1 / -1; margin: 0; font-size: 14px; color: #A79FBA">Prototype only: nothing you type here is sent or stored.</p>
 <fieldset style="grid-column: 1 / -1; border: 0; padding: 0; margin: 4px 0 0; display: flex; flex-direction: column; gap: 10px"><legend style="font-size: 15px; color: #CEC6DD; margin-bottom: 6px">Payment</legend>
 <p style="margin: 0 0 4px; font-size: 15px; color: #A79FBA">Online bookings need a deposit for 2 players to hold the room. Because groups often change size on the day, you settle the rest for however many people actually play.</p>
 <label style="display: flex; gap: 12px; align-items: flex-start; padding: 16px; border: 1px solid ${S.pay==='deposit'?'#C9B3FF':'#4A4060'}; border-radius: 10px; background: #16131D; cursor: pointer"><input type="radio" name="pay" value="deposit" ${S.pay==='deposit'?'checked':''} style="width: 20px; height: 20px; margin-top: 2px; accent-color: #7445F5"><span style="flex: 1 1 auto"><span style="display: flex; justify-content: space-between; gap: 12px"><b>Pay the deposit now, the rest later</b><b>${money(deposit)}</b></span><span style="color: #A79FBA; font-size: 15px">Covers 2 players with tax. The remaining ${money(balance)} for ${S.players} players can be paid online before your visit or at the front desk, adjusted if your group changes.</span></span></label>
-<label style="display: flex; gap: 12px; align-items: flex-start; padding: 16px; border: 1px solid ${S.pay==='full'?'#C9B3FF':'#4A4060'}; border-radius: 10px; background: #16131D; cursor: pointer"><input type="radio" name="pay" value="full" ${S.pay==='full'?'checked':''} style="width: 20px; height: 20px; margin-top: 2px; accent-color: #7445F5"><span style="flex: 1 1 auto"><span style="display: flex; justify-content: space-between; gap: 12px"><b>Pay the full amount now</b><b>${money(total)}</b></span><span style="color: #A79FBA; font-size: 15px">Skip the payment step at check-in. If someone drops out or joins, we'll refund or charge the difference at the desk.</span></span></label></fieldset>
+<label style="display: flex; gap: 12px; align-items: flex-start; padding: 16px; border: 1px solid ${S.pay==='full'?'#C9B3FF':'#4A4060'}; border-radius: 10px; background: #16131D; cursor: pointer"><input type="radio" name="pay" value="full" ${S.pay==='full'?'checked':''} style="width: 20px; height: 20px; margin-top: 2px; accent-color: #7445F5"><span style="flex: 1 1 auto"><span style="display: flex; justify-content: space-between; gap: 12px"><b>Pay the full amount now</b><b>${money(total)}</b></span><span style="color: #A79FBA; font-size: 15px">Skip the payment step at check-in. If someone drops out, the difference becomes store credit; if someone joins, it's charged at the desk.</span></span></label></fieldset>
 <p style="grid-column: 1 / -1; margin: 0; font-size: 14px; color: #A79FBA">Card details are entered on the booking system's secure checkout, which this prototype doesn't include.</p>
 <button type="submit" class="btn" style="grid-column: 1 / -1; justify-self: start; margin-top: 8px">Pay ${money(dueNow)} and confirm</button></form>`;
     M.querySelector('#back').onclick=e=>{e.preventDefault();set({step:1});};
@@ -125,7 +129,7 @@ function render(){
 <div style="padding: 22px; display: flex; flex-direction: column; gap: 14px">
 <span class="disp" style="font-size: 30px; line-height: 1">${esc(S.room||'Pick a room')}</span>
 <dl style="margin: 0; display: grid; grid-template-columns: auto 1fr; gap: 8px 16px; font-size: 16px">
-<dt style="color: #A79FBA">When</dt><dd style="margin: 0; text-align: right">${d[0]}, Nov ${d[1]}${S.time?' · '+S.time:''}</dd>
+<dt style="color: #A79FBA">When</dt><dd style="margin: 0; text-align: right">${d[0]}, ${d[2]} ${d[1]}${S.time?' · '+S.time:''}</dd>
 <dt style="color: #A79FBA">Players</dt><dd style="margin: 0; text-align: right">${S.players} × $37.99</dd>
 <dt style="color: #A79FBA">Subtotal</dt><dd style="margin: 0; text-align: right">$${sub.toFixed(2)}</dd>
 <dt style="color: #A79FBA">HST 13%</dt><dd style="margin: 0; text-align: right">$${tax.toFixed(2)}</dd></dl>
@@ -134,7 +138,7 @@ function render(){
 ${S.pay==='full'?'':`<p style="margin: 0; font-size: 14px; color: #A79FBA">The remaining ${money(balance)} is paid online or at the front desk, for however many people actually play.</p>`}
 ${S.step===1&&S.time?'<button type="button" id="next" class="btn">Continue</button>':''}
 ${S.step===1&&!S.time?'<p style="margin: 0; padding: 14px; border-radius: 8px; background: #1F1A29; color: #CEC6DD; font-size: 15px">Tap a time to light it up, then continue.</p>':''}
-<ul style="margin: 2px 0 0; padding: 0 0 0 18px; color: #A79FBA; font-size: 14px; display: flex; flex-direction: column; gap: 6px"><li>The room is private to your group.</li><li>Full refund if you cancel 48+ hours before.</li><li>Extra players can be added at check-in.</li></ul></div>`;
+<ul style="margin: 2px 0 0; padding: 0 0 0 18px; color: #A79FBA; font-size: 14px; display: flex; flex-direction: column; gap: 6px"><li>The room is private to your group.</li><li>Plans change? Reschedule or get store credit with 48 hours' notice.</li><li>Extra players can be added at check-in.</li></ul></div>`;
   const n=A.querySelector('#next'); if(n) n.onclick=()=>{set({step:2});window.scrollTo({top:0,behavior:'smooth'});};
   const B=document.getElementById('mbar');
   if(S.step===3){B.style.visibility='hidden';}
@@ -143,7 +147,7 @@ ${S.step===1&&!S.time?'<p style="margin: 0; padding: 14px; border-radius: 8px; b
     if(S.step===1){
       B.innerHTML=S.time
         ?`<span class="meta"><b>${esc(S.room)} · ${esc(S.time)}</b><span>Due today ${money(dueNow)} · total ${money(total)}</span></span><button type="button" class="go" id="mnext">Continue</button>`
-        :`<span class="meta"><b>Pick a time</b><span>${S.players} players · ${d[0]}, Nov ${d[1]}</span></span><button type="button" class="go" disabled>Continue</button>`;
+        :`<span class="meta"><b>Pick a time</b><span>${S.players} players · ${d[0]}, ${d[2]} ${d[1]}</span></span><button type="button" class="go" disabled>Continue</button>`;
       const mn=B.querySelector('#mnext'); if(mn) mn.onclick=()=>{set({step:2});window.scrollTo({top:0,behavior:'smooth'});};
     } else {
       B.innerHTML=`<span class="meta"><b>Due today ${money(dueNow)}</b><span>${S.pay==='full'?'Full amount':'Deposit for 2 · rest later'} · total ${money(total)}</span></span><button type="button" class="go" id="mpay">Pay &amp; confirm</button>`;

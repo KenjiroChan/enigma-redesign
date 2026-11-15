@@ -12,7 +12,7 @@ body{margin:0;background:#0D0B12}
 a{color:#C4B0FF}a:hover{color:#DDD1FF}
 *{box-sizing:border-box}
 </style>
-<link rel="stylesheet" href="mobile.css?v=3">
+<link rel="stylesheet" href="mobile.css?v=4">
 </head>
 <body>
 <div role="note" style="background: #C9B3FF; color: #120A24; font: 500 14px/1.45 'IBM Plex Sans', sans-serif; padding: 10px 20px; text-align: center"><span class="bfull">Concept redesign by Kenjiro Chan for a UX portfolio. This is not the official Enigma Escape Room website and nothing here can be booked. To book a real game, visit <a href="https://www.enigmaroom.ca" style="color: #120A24; font-weight: 600">enigmaroom.ca</a>.</span><span class="bshort">Portfolio concept by Kenjiro Chan, not the official site. Book real games at <a href="https://www.enigmaroom.ca" style="color: #120A24; font-weight: 600">enigmaroom.ca</a>.</span></div>
@@ -51,15 +51,18 @@ a{color:#C4B0FF}a:hover{color:#DDD1FF}
 <h1 style="margin: 0; font-family: 'Big Shoulders Display', 'Oswald', sans-serif; font-weight: 800; font-size: 96px; line-height: 0.92; letter-spacing: 0.005em; text-transform: uppercase">Crack the code before the hour runs out.</h1>
 <p style="margin: 0; font-size: 20px; color: #CEC6DD; max-width: 600px">Nine private escape rooms on Dundas Street, beside TMU. Tell us when you're free and how many of you are coming, and we'll show you every room with an open time.</p>
 
-<form aria-label="Find an open room" style="background: #16131D; border: 1px solid #372F47; border-radius: 12px; padding: 10px; display: flex; flex-wrap: wrap; gap: 10px; align-items: stretch">
-<label style="flex: 1 1 170px; display: flex; flex-direction: column; justify-content: center; gap: 4px; padding: 10px 14px; background: #1F1A29; border-radius: 8px; font-family: 'IBM Plex Mono', monospace; font-size: 12px; letter-spacing: 0.12em; color: #A79FBA">DATE<select style="background: transparent; border: 0; color: #F1ECF8; font: 600 18px 'IBM Plex Sans', sans-serif; padding: 0"><option>Tonight</option><option selected>Fri, Nov 20</option><option>Sat, Nov 21</option></select></label>
-<div role="group" aria-label="Players" style="flex: 0 1 200px; display: flex; align-items: center; justify-content: space-between; gap: 6px; padding: 6px; background: #1F1A29; border-radius: 8px">
-<button type="button" aria-label="One fewer player" style="width: 44px; height: 52px; border: 0; border-radius: 6px; background: #2A2436; color: #F1ECF8; font-size: 22px">−</button>
-<span style="display: flex; flex-direction: column; align-items: center; line-height: 1"><span style="font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: 0.12em; color: #A79FBA">PLAYERS</span><span style="display: flex; align-items: baseline; gap: 6px; margin-top: 4px"><span aria-hidden="true" style="font-family: 'IBM Plex Mono', monospace; font-size: 13px; color: #5C536F">5</span><b style="font-family: 'Big Shoulders Display', 'Oswald', sans-serif; font-size: 34px">6</b><span aria-hidden="true" style="font-family: 'IBM Plex Mono', monospace; font-size: 13px; color: #5C536F">7</span></span></span>
-<button type="button" aria-label="One more player" style="width: 44px; height: 52px; border: 0; border-radius: 6px; background: #2A2436; color: #F1ECF8; font-size: 22px">+</button>
+<form id="finder" aria-label="Find an open room" style="background: #16131D; border: 1px solid #372F47; border-radius: 12px; padding: 14px; display: flex; flex-direction: column; gap: 16px">
+<div role="group" aria-labelledby="f-date-l" style="display: flex; flex-direction: column; gap: 8px"><span id="f-date-l" style="font-family: 'IBM Plex Mono', monospace; font-size: 12px; letter-spacing: 0.12em; color: #A79FBA">DATE</span><div id="f-days" class="chips" style="display: flex; flex-wrap: wrap; gap: 6px"></div></div>
+<div style="display: flex; flex-wrap: wrap; gap: 16px">
+<div role="group" aria-labelledby="f-pl-l" style="flex: 0 0 auto; display: flex; flex-direction: column; gap: 8px"><span id="f-pl-l" style="font-family: 'IBM Plex Mono', monospace; font-size: 12px; letter-spacing: 0.12em; color: #A79FBA">PLAYERS</span>
+<div style="display: flex; align-items: center; gap: 6px; background: #1F1A29; border: 1px solid #372F47; border-radius: 8px; padding: 5px">
+<button type="button" id="f-minus" aria-label="One fewer player" style="width: 48px; height: 52px; border: 0; border-radius: 6px; background: #2A2436; color: #F1ECF8; font-size: 24px; cursor: pointer">−</button>
+<span style="width: 92px; height: 52px; border-radius: 6px; background: #0D0B12; border: 1px solid #372F47; display: flex; align-items: center; justify-content: center; gap: 10px"><span id="f-prev" aria-hidden="true" style="font-family: 'IBM Plex Mono', monospace; font-size: 13px; color: #5C536F">5</span><b id="f-num" aria-live="polite" style="font: 800 32px 'Big Shoulders Display', 'Oswald', sans-serif; color: #C9B3FF">6</b><span id="f-next" aria-hidden="true" style="font-family: 'IBM Plex Mono', monospace; font-size: 13px; color: #5C536F">7</span></span>
+<button type="button" id="f-plus" aria-label="One more player" style="width: 48px; height: 52px; border: 0; border-radius: 6px; background: #2A2436; color: #F1ECF8; font-size: 24px; cursor: pointer">+</button>
+</div></div>
+<div role="group" aria-labelledby="f-sc-l" style="flex: 1 1 260px; display: flex; flex-direction: column; gap: 8px"><span id="f-sc-l" style="font-family: 'IBM Plex Mono', monospace; font-size: 12px; letter-spacing: 0.12em; color: #A79FBA">SCARY?</span><div id="f-vibes" style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 6px"></div></div>
 </div>
-<label style="flex: 1 1 170px; display: flex; flex-direction: column; justify-content: center; gap: 4px; padding: 10px 14px; background: #1F1A29; border-radius: 8px; font-family: 'IBM Plex Mono', monospace; font-size: 12px; letter-spacing: 0.12em; color: #A79FBA">SCARY?<select style="background: transparent; border: 0; color: #F1ECF8; font: 600 18px 'IBM Plex Sans', sans-serif; padding: 0"><option>Either is fine</option><option>Not scary</option><option>Scary, please</option></select></label>
-<a href="book.html" style="flex: 1 1 180px; background: #7445F5; color: #FFFFFF; text-decoration: none; padding: 0 22px; border-radius: 8px; font-weight: 600; font-size: 18px; min-height: 64px; display: inline-flex; align-items: center; justify-content: center; box-shadow: inset 0 -4px 0 #4A25B8">Show open times</a>
+<button type="submit" style="width: 100%; background: #7445F5; color: #FFFFFF; border: 0; border-radius: 8px; font: 600 18px 'IBM Plex Sans', sans-serif; min-height: 60px; cursor: pointer; box-shadow: inset 0 -4px 0 #4A25B8">Show open times</button>
 </form>
 
 <ul aria-label="Good to know" style="list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 10px 32px; font-size: 15px; color: #CEC6DD">
@@ -72,7 +75,7 @@ a{color:#C4B0FF}a:hover{color:#DDD1FF}
 <aside aria-labelledby="next-h" style="flex: 1 1 400px; min-width: 0; background: #16131D; border: 1px solid #372F47; border-radius: 14px; overflow: hidden; align-self: center">
 <div style="display: flex; justify-content: space-between; align-items: center; gap: 12px; padding: 16px 20px; background: #1F1A29">
 <h2 id="next-h" style="margin: 0; font-family: 'IBM Plex Mono', monospace; font-weight: 500; font-size: 13px; letter-spacing: 0.16em; color: #C4B0FF">OPEN NEXT · TONIGHT</h2>
-<span style="font-family: 'IBM Plex Mono', monospace; font-size: 12px; color: #A79FBA">FRI, NOV 20</span>
+<span id="next-date" style="font-family: 'IBM Plex Mono', monospace; font-size: 12px; color: #A79FBA">TODAY</span>
 </div>
 <ul style="list-style: none; margin: 0; padding: 0">
 <li style="border-top: 1px solid #2A2436"><a href="book.html" style="display: flex; align-items: center; gap: 16px; padding: 12px 20px; text-decoration: none; color: #F1ECF8; min-height: 84px">
@@ -148,9 +151,9 @@ a{color:#C4B0FF}a:hover{color:#DDD1FF}
 <section aria-labelledby="how-h" style="max-width: 1240px; margin: 0 auto; padding: 72px 40px 24px">
 <h2 id="how-h" style="margin: 0 0 28px; font-family: 'Big Shoulders Display', 'Oswald', sans-serif; font-weight: 800; font-size: 54px; line-height: 1; text-transform: uppercase">How a visit works</h2>
 <ol style="list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px">
-<li style="border-top: 2px solid #7445F5; padding-top: 18px; display: flex; flex-direction: column; gap: 8px"><span style="font-family: 'IBM Plex Mono', monospace; font-size: 14px; color: #C4B0FF">01 · BOOK</span><span style="font-size: 20px; font-weight: 600">Book online in about a minute</span><span style="color: #CEC6DD; font-size: 16px">A deposit covering 2 players holds your room, and you pay the rest online or at the desk for however many people turn up. Cancel 48 hours or more ahead for a full refund.</span></li>
-<li style="border-top: 2px solid #7445F5; padding-top: 18px; display: flex; flex-direction: column; gap: 8px"><span style="font-family: 'IBM Plex Mono', monospace; font-size: 14px; color: #C4B0FF">02 · ARRIVE</span><span style="font-size: 20px; font-weight: 600">Get here 10 minutes early</span><span style="color: #CEC6DD; font-size: 16px">We're on the 3rd floor of 130 Dundas St W, near Dundas station. [Add entrance and elevator details.]</span></li>
-<li style="border-top: 2px solid #7445F5; padding-top: 18px; display: flex; flex-direction: column; gap: 8px"><span style="font-family: 'IBM Plex Mono', monospace; font-size: 14px; color: #C4B0FF">03 · PLAY</span><span style="font-size: 20px; font-weight: 600">Sixty minutes on the clock</span><span style="color: #CEC6DD; font-size: 16px">A game master briefs your group and watches over the room the whole time. [Confirm how hints work.]</span></li>
+<li style="border-top: 2px solid #7445F5; padding-top: 18px; display: flex; flex-direction: column; gap: 8px"><span style="font-family: 'IBM Plex Mono', monospace; font-size: 14px; color: #C4B0FF">01 · BOOK</span><span style="font-size: 20px; font-weight: 600">Book online in about a minute</span><span style="color: #CEC6DD; font-size: 16px">A deposit covering 2 players holds your room, and you pay the rest online or at the desk for however many people turn up. Plans change? Give us 48 hours' notice and we'll reschedule you or give you store credit.</span></li>
+<li style="border-top: 2px solid #7445F5; padding-top: 18px; display: flex; flex-direction: column; gap: 8px"><span style="font-family: 'IBM Plex Mono', monospace; font-size: 14px; color: #C4B0FF">02 · ARRIVE</span><span style="font-size: 20px; font-weight: 600">Get here 10 minutes early</span><span style="color: #CEC6DD; font-size: 16px">We're on the 3rd floor of 130 Dundas St W, near Dundas station, and you can take the elevator or the stairs.</span></li>
+<li style="border-top: 2px solid #7445F5; padding-top: 18px; display: flex; flex-direction: column; gap: 8px"><span style="font-family: 'IBM Plex Mono', monospace; font-size: 14px; color: #C4B0FF">03 · PLAY</span><span style="font-size: 20px; font-weight: 600">Sixty minutes on the clock</span><span style="color: #CEC6DD; font-size: 16px">A game master briefs your group and watches over the room the whole time, and there's a hint book inside if you get stuck.</span></li>
 </ol>
 </section>
 
@@ -171,9 +174,9 @@ a{color:#C4B0FF}a:hover{color:#DDD1FF}
 <a href="#" style="font-weight: 600">Read them on Google</a>
 </div>
 <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px">
-<figure style="margin: 0; border-left: 2px solid #372F47; padding: 4px 0 4px 22px; display: flex; flex-direction: column; gap: 12px"><span style="font-family: 'IBM Plex Mono', monospace; font-size: 12px; letter-spacing: 0.1em; color: #A79FBA">ROOM · GODFATHER</span><blockquote style="margin: 0; font-size: 18px">[ A real recent Google review that names a room, with its actual date ]</blockquote><figcaption style="color: #A79FBA; font-size: 14px">Reviewer · Month Year</figcaption></figure>
-<figure style="margin: 0; border-left: 2px solid #372F47; padding: 4px 0 4px 22px; display: flex; flex-direction: column; gap: 12px"><span style="font-family: 'IBM Plex Mono', monospace; font-size: 12px; letter-spacing: 0.1em; color: #A79FBA">ROOM · EXORCIST</span><blockquote style="margin: 0; font-size: 18px">[ A review from a nervous first-timer, so scared guests know what to expect ]</blockquote><figcaption style="color: #A79FBA; font-size: 14px">Reviewer · Month Year</figcaption></figure>
-<figure style="margin: 0; border-left: 2px solid #372F47; padding: 4px 0 4px 22px; display: flex; flex-direction: column; gap: 12px"><span style="font-family: 'IBM Plex Mono', monospace; font-size: 12px; letter-spacing: 0.1em; color: #A79FBA">TEAM EVENT</span><blockquote style="margin: 0; font-size: 18px">[ A review from a corporate or birthday group ]</blockquote><figcaption style="color: #A79FBA; font-size: 14px">Reviewer · Month Year</figcaption></figure>
+<figure style="margin: 0; border-left: 2px solid #372F47; padding: 4px 0 4px 22px; display: flex; flex-direction: column; gap: 12px"><span style="font-family: 'IBM Plex Mono', monospace; font-size: 12px; letter-spacing: 0.1em; color: #A79FBA">FIRST-TIMERS · GODFATHER</span><blockquote style="margin: 0; font-size: 18px">“It was our first time doing an escape room… and it was so much more fun than we anticipated! The workers were super helpful when explaining the rules and giving us hints when we were stuck.”</blockquote><figcaption style="color: #A79FBA; font-size: 14px">Heather L. · Google review</figcaption></figure>
+<figure style="margin: 0; border-left: 2px solid #372F47; padding: 4px 0 4px 22px; display: flex; flex-direction: column; gap: 12px"><span style="font-family: 'IBM Plex Mono', monospace; font-size: 12px; letter-spacing: 0.1em; color: #A79FBA">HOW SCARY? · HANNIBAL &amp; HAUNTED TOY STORE</span><blockquote style="margin: 0; font-size: 18px">“Hannibal was decently scary… The Haunted Store had scares here and there but in both experiences, I enjoyed discovering the story as you solved puzzles.”</blockquote><figcaption style="color: #A79FBA; font-size: 14px">Crystle · Google review</figcaption></figure>
+<figure style="margin: 0; border-left: 2px solid #372F47; padding: 4px 0 4px 22px; display: flex; flex-direction: column; gap: 12px"><span style="font-family: 'IBM Plex Mono', monospace; font-size: 12px; letter-spacing: 0.1em; color: #A79FBA">LATE NIGHT · DATE NIGHT</span><blockquote style="margin: 0; font-size: 18px">“The staff was super accommodating — we arrived around 11:45 and changed rooms last minute… Perfect for a late-night couples date or a fun night out.”</blockquote><figcaption style="color: #A79FBA; font-size: 14px">Dee C. · Google review</figcaption></figure>
 </div>
 </section>
 
@@ -184,7 +187,7 @@ a{color:#C4B0FF}a:hover{color:#DDD1FF}
 <dt style="font-family: 'IBM Plex Mono', monospace; font-size: 13px; letter-spacing: 0.1em; color: #A79FBA; padding-top: 3px">ADDRESS</dt><dd style="margin: 0">130 Dundas St W, 3rd floor<br>Toronto, ON M5G 1C3</dd>
 <dt style="font-family: 'IBM Plex Mono', monospace; font-size: 13px; letter-spacing: 0.1em; color: #A79FBA; padding-top: 3px">HOURS</dt><dd style="margin: 0">Mon–Thu 1 pm – midnight<br>Fri 1 pm – 1 am · Sat 11 am – 1 am<br>Sun 11 am – midnight</dd>
 <dt style="font-family: 'IBM Plex Mono', monospace; font-size: 13px; letter-spacing: 0.1em; color: #A79FBA; padding-top: 3px">CONTACT</dt><dd style="margin: 0"><a href="tel:16477693628">647-769-3628</a><br><a href="mailto:info@enigmaroom.ca">info@enigmaroom.ca</a></dd>
-<dt style="font-family: 'IBM Plex Mono', monospace; font-size: 13px; letter-spacing: 0.1em; color: #A79FBA; padding-top: 3px">ACCESS</dt><dd style="margin: 0">[Elevator, step-free route and sensory notes, confirmed with the owner]</dd>
+<dt style="font-family: 'IBM Plex Mono', monospace; font-size: 13px; letter-spacing: 0.1em; color: #A79FBA; padding-top: 3px">ACCESS</dt><dd style="margin: 0">Elevator and stairs to the 3rd floor. Tell us about any accessibility needs when you book and we'll set things up for you.</dd>
 </dl>
 <a href="#" style="align-self: flex-start; border: 1px solid #372F47; color: #F1ECF8; text-decoration: none; padding: 0 20px; border-radius: 6px; min-height: 46px; display: inline-flex; align-items: center; font-weight: 600">Open in Google Maps</a>
 </div>
@@ -194,7 +197,7 @@ a{color:#C4B0FF}a:hover{color:#DDD1FF}
 <details style="border-top: 1px solid #372F47; padding: 16px 0"><summary style="cursor: pointer; font-weight: 600; font-size: 17px">Will we be in a room with strangers?</summary><p style="margin: 10px 0 0; color: #CEC6DD">No. Every booking is private, so the only people in your room are the ones you bring.</p></details>
 <details style="border-top: 1px solid #372F47; padding: 16px 0"><summary style="cursor: pointer; font-weight: 600; font-size: 17px">Can kids play?</summary><p style="margin: 10px 0 0; color: #CEC6DD">Yes. Players aged 10 and under need an adult (18+) in the room with them.</p></details>
 <details style="border-top: 1px solid #372F47; padding: 16px 0"><summary style="cursor: pointer; font-weight: 600; font-size: 17px">What if we're running late?</summary><p style="margin: 10px 0 0; color: #CEC6DD">Call us as soon as you know. [State exactly how a late arrival affects game time.]</p></details>
-<details style="border-top: 1px solid #372F47; border-bottom: 1px solid #372F47; padding: 16px 0"><summary style="cursor: pointer; font-weight: 600; font-size: 17px">How do refunds work?</summary><p style="margin: 10px 0 0; color: #CEC6DD">Cancel 48 hours or more before your booking for a full refund. Cancellations inside 48 hours can't be refunded.</p></details>
+<details style="border-top: 1px solid #372F47; border-bottom: 1px solid #372F47; padding: 16px 0"><summary style="cursor: pointer; font-weight: 600; font-size: 17px">What if our plans change?</summary><p style="margin: 10px 0 0; color: #CEC6DD">Let us know at least 48 hours before your booking and we'll move you to another time or give you store credit for a future visit.</p></details>
 </div>
 </section>
 
@@ -230,6 +233,29 @@ function render(){
  document.querySelectorAll('#filters button').forEach(b=>b.onclick=()=>{filter=b.dataset.f;render();});
 }
 render();
+
+(function(){
+ const MON=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'], DOW=['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
+ const days=Array.from({length:7},(_,i)=>{const t=new Date();t.setDate(t.getDate()+i);return {top:i===0?'Today':(i===1?'Tmrw':DOW[t.getDay()]),num:t.getDate(),full:DOW[t.getDay()]+', '+MON[t.getMonth()]+' '+t.getDate()};});
+ const F={day:0,players:6,vibe:'any'};
+ const on='border: 1px solid #C9B3FF; background: #C9B3FF; color: #120A24; font-weight: 600; box-shadow: 0 0 18px rgba(150,110,255,0.35)';
+ const off='border: 1px solid #372F47; background: #1F1A29; color: #F1ECF8; font-weight: 500';
+ function draw(){
+  document.getElementById('f-days').innerHTML=days.map((d,i)=>`<button type="button" data-i="${i}" aria-pressed="${F.day===i}" aria-label="${d.full}" style="width: 60px; min-height: 60px; border-radius: 8px; ${F.day===i?on:off}; font-family: 'IBM Plex Sans', sans-serif; font-size: 13px; cursor: pointer; display: flex; flex-direction: column; align-items: center; justify-content: center"><span ${F.day===i?'':'style="color: #A79FBA"'}>${d.top}</span><b style="font: 800 22px 'Big Shoulders Display', 'Oswald', sans-serif">${d.num}</b></button>`).join('');
+  document.getElementById('f-vibes').innerHTML=[['any','Either'],['adv','Not scary'],['dark','Scary']].map(([v,l])=>`<button type="button" data-v="${v}" aria-pressed="${F.vibe===v}" style="min-height: 52px; border-radius: 8px; ${F.vibe===v?on:off}; font-family: 'IBM Plex Sans', sans-serif; font-size: 15px; cursor: pointer">${l}</button>`).join('');
+  document.getElementById('f-num').textContent=F.players;
+  document.getElementById('f-prev').textContent=F.players>2?F.players-1:'';
+  document.getElementById('f-next').textContent=F.players<10?F.players+1:'';
+  document.getElementById('f-minus').disabled=F.players<=2; document.getElementById('f-plus').disabled=F.players>=10;
+  document.querySelectorAll('#f-days [data-i]').forEach(b=>b.onclick=()=>{F.day=+b.dataset.i;draw();});
+  document.querySelectorAll('#f-vibes [data-v]').forEach(b=>b.onclick=()=>{F.vibe=b.dataset.v;draw();});
+ }
+ document.getElementById('f-minus').onclick=()=>{F.players=Math.max(2,F.players-1);draw();};
+ document.getElementById('f-plus').onclick=()=>{F.players=Math.min(10,F.players+1);draw();};
+ document.getElementById('finder').addEventListener('submit',e=>{e.preventDefault();location.href=`book.html?d=${F.day}&p=${F.players}&v=${F.vibe}`;});
+ draw();
+ const nd=document.getElementById('next-date'); if(nd) nd.textContent=days[0].full.toUpperCase();
+})();
 
 </script>
 </body>

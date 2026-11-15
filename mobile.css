@@ -67,8 +67,12 @@
   [style*="font-size: 20px; color: #CEC6DD"] { font-size: 17px !important; }
   .cipher { display: none !important; }
 
-  /* Homepage finder: every control full width */
-  form[aria-label="Find an open room"] > * { flex: 1 1 100% !important; }
+  /* Homepage finder */
+  #finder { padding: 12px !important; }
+  .chips { flex-wrap: nowrap !important; overflow-x: auto !important; scrollbar-width: none; }
+  .chips::-webkit-scrollbar { display: none; }
+  .chips > * { flex: 0 0 auto !important; }
+  #finder > div > [role="group"] { flex: 1 1 100% !important; }
 
   /* Horizontal strips instead of wrapping rows */
   .hscroll { flex-wrap: nowrap !important; overflow-x: auto !important; scrollbar-width: none;
