@@ -34,7 +34,7 @@ input[type=text],input[type=tel],input[type=email]{min-height:50px;padding:0 14p
 <div role="note" style="background: #C9B3FF; color: #120A24; font: 500 14px/1.45 'IBM Plex Sans', sans-serif; padding: 10px 20px; text-align: center"><span class="bfull">Concept redesign by Kenjiro Chan for a UX portfolio. This is not the official Enigma Escape Room website and nothing here can be booked. To book a real game, visit <a href="https://www.enigmaroom.ca" style="color: #120A24; font-weight: 600">enigmaroom.ca</a>.</span><span class="bshort">Portfolio concept by Kenjiro Chan, not the official site. Book real games at <a href="https://www.enigmaroom.ca" style="color: #120A24; font-weight: 600">enigmaroom.ca</a>.</span></div>
 <div style="background: #0D0B12; color: #F1ECF8; font-family: 'IBM Plex Sans', sans-serif; font-size: 16px; line-height: 1.5; min-height: 100vh">
 <header style="border-bottom: 1px solid #2A2436; position: sticky; top: 0; z-index: 20; background: #0D0B12">
-<div style="max-width: 1280px; margin: 0 auto; padding: 14px 40px; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px">
+<div class="bk-head" style="max-width: 1280px; margin: 0 auto; padding: 14px 40px; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px">
 <a href="index.html" aria-label="Enigma, home" style="display: flex; align-items: center; gap: 10px; text-decoration: none; color: #F1ECF8"><svg aria-hidden="true" width="24" height="30" viewBox="0 0 30 36" style="fill: #A685FF"><circle cx="15" cy="12" r="9"></circle><path d="M10 18 L20 18 L23 34 L7 34 Z"></path><circle cx="15" cy="12" r="3.2" style="fill: #0D0B12"></circle></svg><span class="disp" style="letter-spacing: 0.16em; font-size: 22px">ENIGMA</span></a>
 <ol id="steps" class="bk-steps" aria-label="Booking steps" style="list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 14px 26px; font-size: 15px; font-weight: 500"></ol>
 <span class="mono bk-meta-label" style="font-size: 12px; letter-spacing: 0.1em; color: #A79FBA">PROTOTYPE · SAMPLE TIMES</span>
@@ -91,6 +91,7 @@ function render(){
     M.querySelectorAll('[data-day]').forEach(b=>b.onclick=()=>set({day:+b.dataset.day,room:null,time:null}));
     M.querySelectorAll('[data-vibe]').forEach(b=>b.onclick=()=>set({vibe:b.dataset.vibe,room:null,time:null}));
     M.querySelectorAll('[data-time]').forEach(b=>b.onclick=()=>set({room:b.dataset.room,time:b.dataset.time}));
+    const selDay=M.querySelector('[data-day][aria-pressed="true"]'); if(selDay&&selDay.parentElement.scrollWidth>selDay.parentElement.clientWidth){const st=selDay.parentElement, x=selDay.getBoundingClientRect().left-st.getBoundingClientRect().left+st.scrollLeft; st.scrollLeft=Math.max(0,x-st.clientWidth/2+selDay.offsetWidth/2);}
     M.querySelector('#minus').onclick=()=>set({players:Math.max(2,S.players-1),room:null,time:null});
     M.querySelector('#plus').onclick=()=>set({players:Math.min(10,S.players+1),room:null,time:null});
   } else if(S.step===2){
