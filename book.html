@@ -50,12 +50,14 @@ const V={adv:['I','NOT SCARY','#15241B','#8FC7A4'],dark:['II','SCARY','#2A1612',
 const W={3:'Medium',4:'Hard',5:'Expert'};
 const ROOMS=[['01','Jungle Safari','adv',5,2,10],['02','The Lost Treasure','adv',3,2,10],['03','Godfather','adv',4,2,10],['04','Haunted Toy Store','dark',3,2,9],['05','Hannibal','dark',5,2,9],['06','Exorcist','dark',4,2,10],['07','Bomb Squad','cube',5,2,3],['08','Fairytale','cube',4,2,7],['09','Magic School','cube',5,2,7]];
 const VIBES=[['any','Either'],['adv','Not scary'],['dark','Scary'],['cube','Escape Cubes']];
-const S={step:1,day:5,players:6,vibe:'any',room:null,time:null};
+const S={step:1,day:5,players:6,vibe:'any',room:null,time:null,pay:'deposit'};
+const PRICE=37.99, HST=0.13, DEPOSIT_PLAYERS=2;
+const money=n=>'$'+n.toFixed(2);
 const set=p=>{Object.assign(S,p);render();};
 const esc=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
 
 function render(){
-  const d=DAYS[S.day], sub=S.players*37.99, tax=sub*0.13;
+  const d=DAYS[S.day], sub=S.players*PRICE, tax=sub*HST, total=sub+tax, deposit=DEPOSIT_PLAYERS*PRICE*(1+HST), balance=total-deposit, dueNow=S.pay==='full'?total:deposit;
   const col=n=>S.step===n?'#C9B3FF':(S.step>n?'#8FC7A4':'#A79FBA');
   document.getElementById('steps').innerHTML=[[1,'Pick a time'],[2,'Your details'],[3,'Confirmed']].map(([n,l])=>`<li ${S.step===n?'aria-current="step"':''} style="display: flex; align-items: center; gap: 8px; color: ${col(n)}"><span class="mono" style="width: 26px; height: 26px; border-radius: 50%; border: 1.5px solid ${col(n)}; display: inline-flex; align-items: center; justify-content: center; font-size: 12px">${n}</span>${l}</li>`).join('');
   const M=document.getElementById('main');
@@ -96,17 +98,20 @@ function render(){
 <label style="display: flex; flex-direction: column; gap: 6px; font-size: 15px; color: #CEC6DD">Mobile number<input type="tel" autocomplete="off" placeholder="416-555-0142"></label>
 <label style="grid-column: 1 / -1; display: flex; flex-direction: column; gap: 6px; font-size: 15px; color: #CEC6DD">Email for your confirmation<input type="email" autocomplete="off" placeholder="you@example.com"></label>
 <p style="grid-column: 1 / -1; margin: 0; font-size: 14px; color: #A79FBA">Prototype only: nothing you type here is sent or stored.</p>
-<fieldset style="grid-column: 1 / -1; border: 0; padding: 0; margin: 4px 0 0; display: flex; flex-direction: column; gap: 10px"><legend style="font-size: 15px; color: #CEC6DD; margin-bottom: 10px">How would you like to pay?</legend>
-<label style="display: flex; gap: 12px; align-items: flex-start; padding: 16px; border: 1px solid #4A4060; border-radius: 10px; background: #16131D; cursor: pointer"><input type="radio" name="pay" checked style="width: 20px; height: 20px; margin-top: 2px; accent-color: #7445F5"><span><b>Pay at the front desk</b><br><span style="color: #A79FBA; font-size: 15px">Cash, debit, Visa, Mastercard or Amex when you arrive.</span></span></label>
-<label style="display: flex; gap: 12px; align-items: flex-start; padding: 16px; border: 1px solid #4A4060; border-radius: 10px; background: #16131D; cursor: pointer"><input type="radio" name="pay" style="width: 20px; height: 20px; margin-top: 2px; accent-color: #7445F5"><span><b>Pay now by card</b><br><span style="color: #A79FBA; font-size: 15px">Skip the payment step at check-in.</span></span></label></fieldset>
-<button type="submit" class="btn" style="grid-column: 1 / -1; justify-self: start; margin-top: 8px">Confirm booking</button></form>`;
+<fieldset style="grid-column: 1 / -1; border: 0; padding: 0; margin: 4px 0 0; display: flex; flex-direction: column; gap: 10px"><legend style="font-size: 15px; color: #CEC6DD; margin-bottom: 6px">Payment</legend>
+<p style="margin: 0 0 4px; font-size: 15px; color: #A79FBA">Online bookings need a deposit for 2 players to hold the room. Because groups often change size on the day, you settle the rest for however many people actually play.</p>
+<label style="display: flex; gap: 12px; align-items: flex-start; padding: 16px; border: 1px solid ${S.pay==='deposit'?'#C9B3FF':'#4A4060'}; border-radius: 10px; background: #16131D; cursor: pointer"><input type="radio" name="pay" value="deposit" ${S.pay==='deposit'?'checked':''} style="width: 20px; height: 20px; margin-top: 2px; accent-color: #7445F5"><span style="flex: 1 1 auto"><span style="display: flex; justify-content: space-between; gap: 12px"><b>Pay the deposit now, the rest later</b><b>${money(deposit)}</b></span><span style="color: #A79FBA; font-size: 15px">Covers 2 players with tax. The remaining ${money(balance)} for ${S.players} players can be paid online before your visit or at the front desk, adjusted if your group changes.</span></span></label>
+<label style="display: flex; gap: 12px; align-items: flex-start; padding: 16px; border: 1px solid ${S.pay==='full'?'#C9B3FF':'#4A4060'}; border-radius: 10px; background: #16131D; cursor: pointer"><input type="radio" name="pay" value="full" ${S.pay==='full'?'checked':''} style="width: 20px; height: 20px; margin-top: 2px; accent-color: #7445F5"><span style="flex: 1 1 auto"><span style="display: flex; justify-content: space-between; gap: 12px"><b>Pay the full amount now</b><b>${money(total)}</b></span><span style="color: #A79FBA; font-size: 15px">Skip the payment step at check-in. If someone drops out or joins, we'll refund or charge the difference at the desk.</span></span></label></fieldset>
+<p style="grid-column: 1 / -1; margin: 0; font-size: 14px; color: #A79FBA">Card details are entered on the booking system's secure checkout, which this prototype doesn't include.</p>
+<button type="submit" class="btn" style="grid-column: 1 / -1; justify-self: start; margin-top: 8px">Pay ${money(dueNow)} and confirm</button></form>`;
     M.querySelector('#back').onclick=e=>{e.preventDefault();set({step:1});};
     M.querySelector('#details').onsubmit=e=>{e.preventDefault();set({step:3});};
+    M.querySelectorAll('input[name=pay]').forEach(r=>r.onchange=()=>set({pay:r.value}));
   } else {
     M.innerHTML=`<div style="max-width: 660px; display: flex; flex-direction: column; gap: 18px">
 <p aria-hidden="true" class="mono" style="margin: 0; font-size: 14px; letter-spacing: 0.3em; color: #C9B3FF">PBASVEZRQ → CONFIRMED</p>
 <h1 class="disp" style="margin: 0; font-size: 60px; line-height: 0.95">You're booked into ${esc(S.room)}.</h1>
-<p style="margin: 0; color: #CEC6DD; font-size: 18px">In the real site, a confirmation email would go out now, asking you to arrive 10 minutes before ${esc(S.time)} so your game master can brief everyone before the clock starts.</p>
+<p style="margin: 0; color: #CEC6DD; font-size: 18px">In the real site, a confirmation email would go out now, asking you to arrive 10 minutes before ${esc(S.time)} so your game master can brief everyone before the clock starts. ${S.pay==='full'?`You'd have paid the full ${money(total)}, adjusted at the desk if your group size changes.`:`You'd have paid a ${money(deposit)} deposit, with the remaining ${money(balance)} for ${S.players} players payable online beforehand or at the front desk.`}</p>
 <p style="margin: 0; padding: 14px 16px; border-radius: 8px; background: #1F1A29; color: #CEC6DD; font-size: 15px">This is a design prototype, so no booking was made. To play for real, book at <a href="https://www.enigmaroom.ca">enigmaroom.ca</a>.</p>
 <div style="display: flex; flex-wrap: wrap; gap: 10px; margin-top: 6px"><a href="index.html" class="btn">Back to the homepage</a><a href="#" id="restart" style="padding: 0 10px; font-weight: 600; min-height: 52px; display: inline-flex; align-items: center">Start over</a></div></div>`;
     M.querySelector('#restart').onclick=e=>{e.preventDefault();set({step:1,room:null,time:null});};
@@ -120,7 +125,9 @@ function render(){
 <dt style="color: #A79FBA">Players</dt><dd style="margin: 0; text-align: right">${S.players} × $37.99</dd>
 <dt style="color: #A79FBA">Subtotal</dt><dd style="margin: 0; text-align: right">$${sub.toFixed(2)}</dd>
 <dt style="color: #A79FBA">HST 13%</dt><dd style="margin: 0; text-align: right">$${tax.toFixed(2)}</dd></dl>
-<div style="display: flex; justify-content: space-between; align-items: baseline; border-top: 1px dashed #4A4060; padding-top: 14px"><span style="font-weight: 600">Total</span><span class="disp" style="font-size: 36px; line-height: 1">$${(sub+tax).toFixed(2)}</span></div>
+<div style="display: flex; justify-content: space-between; align-items: baseline; border-top: 1px dashed #4A4060; padding-top: 14px"><span style="font-weight: 600">Total</span><span class="disp" style="font-size: 36px; line-height: 1">${money(total)}</span></div>
+<div style="display: flex; justify-content: space-between; align-items: baseline; gap: 12px; padding: 12px 14px; border-radius: 8px; background: #1F1A29"><span><b>Due today</b><br><span style="font-size: 13px; color: #A79FBA">${S.pay==='full'?'Full amount':'Deposit for 2 players'}</span></span><b style="font-size: 20px; color: #C9B3FF">${money(dueNow)}</b></div>
+${S.pay==='full'?'':`<p style="margin: 0; font-size: 14px; color: #A79FBA">The remaining ${money(balance)} is paid online or at the front desk, for however many people actually play.</p>`}
 ${S.step===1&&S.time?'<button type="button" id="next" class="btn">Continue</button>':''}
 ${S.step===1&&!S.time?'<p style="margin: 0; padding: 14px; border-radius: 8px; background: #1F1A29; color: #CEC6DD; font-size: 15px">Tap a time to light it up, then continue.</p>':''}
 <ul style="margin: 2px 0 0; padding: 0 0 0 18px; color: #A79FBA; font-size: 14px; display: flex; flex-direction: column; gap: 6px"><li>The room is private to your group.</li><li>Full refund if you cancel 48+ hours before.</li><li>Extra players can be added at check-in.</li></ul></div>`;
