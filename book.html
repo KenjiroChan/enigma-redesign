@@ -27,22 +27,25 @@ input[type=text],input[type=tel],input[type=email]{min-height:50px;padding:0 14p
 :focus-visible{outline:3px solid #C9B3FF;outline-offset:2px}
 @media (max-width:720px){h1{font-size:40px !important}.wrap{padding:24px 18px !important}}
 </style>
+<link rel="stylesheet" href="mobile.css">
+<style>@media (max-width:720px){.slots{flex-wrap:nowrap !important;overflow-x:auto !important;width:100%;scrollbar-width:none}.slots::-webkit-scrollbar{display:none}.slots>*{flex:0 0 auto}}</style>
 </head>
 <body>
-<div role="note" style="background: #C9B3FF; color: #120A24; font: 500 14px/1.45 'IBM Plex Sans', sans-serif; padding: 10px 20px; text-align: center">Concept redesign by Kenjiro Chan for a UX portfolio. This is not the official Enigma Escape Room website and nothing here can be booked. To book a real game, visit <a href="https://www.enigmaroom.ca" style="color: #120A24; font-weight: 600">enigmaroom.ca</a>.</div>
+<div role="note" style="background: #C9B3FF; color: #120A24; font: 500 14px/1.45 'IBM Plex Sans', sans-serif; padding: 10px 20px; text-align: center"><span class="bfull">Concept redesign by Kenjiro Chan for a UX portfolio. This is not the official Enigma Escape Room website and nothing here can be booked. To book a real game, visit <a href="https://www.enigmaroom.ca" style="color: #120A24; font-weight: 600">enigmaroom.ca</a>.</span><span class="bshort">Portfolio concept by Kenjiro Chan, not the official site. Book real games at <a href="https://www.enigmaroom.ca" style="color: #120A24; font-weight: 600">enigmaroom.ca</a>.</span></div>
 <div style="background: #0D0B12; color: #F1ECF8; font-family: 'IBM Plex Sans', sans-serif; font-size: 16px; line-height: 1.5; min-height: 100vh">
-<header style="border-bottom: 1px solid #2A2436">
+<header style="border-bottom: 1px solid #2A2436; position: sticky; top: 0; z-index: 20; background: #0D0B12">
 <div style="max-width: 1280px; margin: 0 auto; padding: 14px 40px; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px">
 <a href="index.html" aria-label="Enigma, home" style="display: flex; align-items: center; gap: 10px; text-decoration: none; color: #F1ECF8"><svg aria-hidden="true" width="24" height="30" viewBox="0 0 30 36" style="fill: #A685FF"><circle cx="15" cy="12" r="9"></circle><path d="M10 18 L20 18 L23 34 L7 34 Z"></path><circle cx="15" cy="12" r="3.2" style="fill: #0D0B12"></circle></svg><span class="disp" style="letter-spacing: 0.16em; font-size: 22px">ENIGMA</span></a>
-<ol id="steps" aria-label="Booking steps" style="list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 14px 26px; font-size: 15px; font-weight: 500"></ol>
-<span class="mono" style="font-size: 12px; letter-spacing: 0.1em; color: #A79FBA">PROTOTYPE · SAMPLE TIMES</span>
+<ol id="steps" class="bk-steps" aria-label="Booking steps" style="list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 14px 26px; font-size: 15px; font-weight: 500"></ol>
+<span class="mono bk-meta-label" style="font-size: 12px; letter-spacing: 0.1em; color: #A79FBA">PROTOTYPE · SAMPLE TIMES</span>
 </div>
 </header>
 <div class="wrap" style="max-width: 1280px; margin: 0 auto; padding: 32px 40px; display: flex; flex-wrap: wrap; gap: 32px; align-items: flex-start">
 <main id="main" style="flex: 999 1 640px; min-width: 0"></main>
-<aside id="aside" aria-label="Booking summary" style="flex: 1 1 300px; min-width: 260px; background: #16131D; border: 1px solid #372F47; border-radius: 12px; overflow: hidden"></aside>
+<aside id="aside" class="bk-aside" aria-label="Booking summary" style="flex: 1 1 300px; min-width: 260px; background: #16131D; border: 1px solid #372F47; border-radius: 12px; overflow: hidden"></aside>
 </div>
 </div>
+<div class="mbar" id="mbar"></div>
 <script>
 const DAYS=[['Sun',15],['Mon',16],['Tue',17],['Wed',18],['Thu',19],['Fri',20],['Sat',21]];
 const TIMES=['11:30 am','12:45 pm','2:00 pm','3:15 pm','4:30 pm','5:45 pm','7:00 pm','8:15 pm','9:30 pm','10:45 pm'];
@@ -59,7 +62,7 @@ const esc=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;',
 function render(){
   const d=DAYS[S.day], sub=S.players*PRICE, tax=sub*HST, total=sub+tax, deposit=DEPOSIT_PLAYERS*PRICE*(1+HST), balance=total-deposit, dueNow=S.pay==='full'?total:deposit;
   const col=n=>S.step===n?'#C9B3FF':(S.step>n?'#8FC7A4':'#A79FBA');
-  document.getElementById('steps').innerHTML=[[1,'Pick a time'],[2,'Your details'],[3,'Confirmed']].map(([n,l])=>`<li ${S.step===n?'aria-current="step"':''} style="display: flex; align-items: center; gap: 8px; color: ${col(n)}"><span class="mono" style="width: 26px; height: 26px; border-radius: 50%; border: 1.5px solid ${col(n)}; display: inline-flex; align-items: center; justify-content: center; font-size: 12px">${n}</span>${l}</li>`).join('');
+  document.getElementById('steps').innerHTML=[[1,'Pick a time'],[2,'Your details'],[3,'Confirmed']].map(([n,l])=>`<li ${S.step===n?'aria-current="step"':''} style="display: flex; align-items: center; gap: 8px; color: ${col(n)}"><span class="mono" style="width: 26px; height: 26px; border-radius: 50%; border: 1.5px solid ${col(n)}; display: inline-flex; align-items: center; justify-content: center; font-size: 12px">${n}</span><span class="lbltxt">${l}</span></li>`).join('');
   const M=document.getElementById('main');
   if(S.step===1){
     const weekday=S.day>=1&&S.day<=4;
@@ -68,20 +71,20 @@ function render(){
     const rooms=list.map((r,ri)=>{const v=V[r[2]];
       const open=TIMES.map((t,ti)=>({t,ti})).filter(o=>(weekday?o.ti>=1:true)&&((o.ti*7+ri*3+S.day*5)%4!==0)).slice(0,5);
       const slots=open.map(o=>{const on=S.room===r[1]&&S.time===o.t;return `<button type="button" class="lamp ${on?'on':'off'}" aria-pressed="${on}" aria-label="${esc(r[1])} at ${o.t}" data-room="${esc(r[1])}" data-time="${o.t}">${o.t}</button>`}).join('');
-      return `<div style="background: #16131D; border: 1px solid #372F47; border-radius: 12px; padding: 16px 18px; display: flex; flex-wrap: wrap; align-items: center; gap: 18px">
+      return `<div class="bk-room" style="background: #16131D; border: 1px solid #372F47; border-radius: 12px; padding: 16px 18px; display: flex; flex-wrap: wrap; align-items: center; gap: 18px">
 <div style="flex: 1 1 210px; min-width: 0; display: flex; flex-direction: column; gap: 4px"><span class="lbl" style="letter-spacing: 0.1em">ROTOR ${v[0]} · No.${r[0]}</span><span class="disp" style="font-size: 28px; line-height: 1">${r[1]}</span>
 <span style="display: flex; flex-wrap: wrap; gap: 6px 12px; align-items: center; font-size: 14px; color: #CEC6DD"><span class="mono" style="font-size: 12px; padding: 3px 7px; border-radius: 4px; background: ${v[2]}; color: ${v[3]}">${v[1]}</span>${r[3]}/5 ${W[r[3]]} · fits ${r[4]}–${r[5]}</span></div>
-<div style="display: flex; flex-wrap: wrap; gap: 8px">${slots}</div></div>`}).join('');
+<div class="slots" style="display: flex; flex-wrap: wrap; gap: 8px">${slots}</div></div>`}).join('');
     const small=ROOMS.filter(r=>byV(r)&&!fits(r)).map(r=>`<div style="border: 1px dashed #372F47; border-radius: 12px; padding: 14px 18px; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px; color: #A79FBA; font-size: 15px"><span><b style="color: #CEC6DD">${r[1]}</b> fits ${r[4]}–${r[5]} players</span><span>Not shown for a group of ${S.players}</span></div>`).join('');
     M.innerHTML=`<h1 class="disp" style="margin: 0 0 22px; font-size: 50px; line-height: 0.95">When are you free, and how many are coming?</h1>
-<div style="display: flex; flex-wrap: wrap; gap: 22px 32px; align-items: flex-end; padding-bottom: 24px; border-bottom: 1px solid #2A2436">
-<div role="group" aria-label="Date" style="display: flex; flex-direction: column; gap: 8px"><span class="lbl">DATE</span><div style="display: flex; flex-wrap: wrap; gap: 6px">${DAYS.map((x,i)=>`<button type="button" class="key day ${S.day===i?'on':'off'}" aria-pressed="${S.day===i}" data-day="${i}"><span ${S.day===i?'':'style="color: #A79FBA"'}>${x[0]}</span><b>${x[1]}</b></button>`).join('')}</div></div>
+<div class="bk-controls" style="display: flex; flex-wrap: wrap; gap: 22px 32px; align-items: flex-end; padding-bottom: 24px; border-bottom: 1px solid #2A2436">
+<div role="group" aria-label="Date" style="display: flex; flex-direction: column; gap: 8px"><span class="lbl">DATE</span><div class="hscroll" style="display: flex; flex-wrap: wrap; gap: 6px">${DAYS.map((x,i)=>`<button type="button" class="key day ${S.day===i?'on':'off'}" aria-pressed="${S.day===i}" data-day="${i}"><span ${S.day===i?'':'style="color: #A79FBA"'}>${x[0]}</span><b>${x[1]}</b></button>`).join('')}</div></div>
 <div role="group" aria-label="Players" style="display: flex; flex-direction: column; gap: 8px"><span class="lbl">PLAYERS</span>
 <div style="display: flex; align-items: center; gap: 6px; background: #1F1A29; border: 1px solid #372F47; border-radius: 8px; padding: 5px">
 <button type="button" id="minus" aria-label="One fewer player" style="width: 48px; height: 54px; border: 0; border-radius: 6px; background: #2A2436; color: #F1ECF8; font-size: 24px; cursor: pointer">−</button>
 <span style="width: 92px; height: 54px; border-radius: 6px; background: #0D0B12; border: 1px solid #372F47; display: flex; align-items: center; justify-content: center; gap: 10px"><span aria-hidden="true" class="mono" style="font-size: 13px; color: #5C536F">${S.players>2?S.players-1:''}</span><b aria-live="polite" style="font: 800 32px 'Big Shoulders Display','Oswald',sans-serif; color: #C9B3FF">${S.players}</b><span aria-hidden="true" class="mono" style="font-size: 13px; color: #5C536F">${S.players<10?S.players+1:''}</span></span>
 <button type="button" id="plus" aria-label="One more player" style="width: 48px; height: 54px; border: 0; border-radius: 6px; background: #2A2436; color: #F1ECF8; font-size: 24px; cursor: pointer">+</button></div></div>
-<div role="group" aria-label="Scary or not" style="display: flex; flex-direction: column; gap: 8px"><span class="lbl">SCARY?</span><div style="display: flex; flex-wrap: wrap; gap: 6px">${VIBES.map(([id,l])=>`<button type="button" class="key chip ${S.vibe===id?'on':'off'}" aria-pressed="${S.vibe===id}" data-vibe="${id}">${l}</button>`).join('')}</div></div>
+<div role="group" aria-label="Scary or not" style="display: flex; flex-direction: column; gap: 8px"><span class="lbl">SCARY?</span><div class="hscroll" style="display: flex; flex-wrap: wrap; gap: 6px">${VIBES.map(([id,l])=>`<button type="button" class="key chip ${S.vibe===id?'on':'off'}" aria-pressed="${S.vibe===id}" data-vibe="${id}">${l}</button>`).join('')}</div></div>
 </div>
 <p aria-live="polite" style="margin: 20px 0 14px; color: #CEC6DD">${list.length} rooms have open times on ${d[0]}, Nov ${d[1]} for a group of ${S.players}.</p>
 <div style="display: flex; flex-direction: column; gap: 12px">${rooms}${small}</div>`;
@@ -132,6 +135,20 @@ ${S.step===1&&S.time?'<button type="button" id="next" class="btn">Continue</butt
 ${S.step===1&&!S.time?'<p style="margin: 0; padding: 14px; border-radius: 8px; background: #1F1A29; color: #CEC6DD; font-size: 15px">Tap a time to light it up, then continue.</p>':''}
 <ul style="margin: 2px 0 0; padding: 0 0 0 18px; color: #A79FBA; font-size: 14px; display: flex; flex-direction: column; gap: 6px"><li>The room is private to your group.</li><li>Full refund if you cancel 48+ hours before.</li><li>Extra players can be added at check-in.</li></ul></div>`;
   const n=A.querySelector('#next'); if(n) n.onclick=()=>{set({step:2});window.scrollTo({top:0,behavior:'smooth'});};
+  const B=document.getElementById('mbar');
+  if(S.step===3){B.style.visibility='hidden';}
+  else {
+    B.style.visibility='visible';
+    if(S.step===1){
+      B.innerHTML=S.time
+        ?`<span class="meta"><b>${esc(S.room)} · ${esc(S.time)}</b><span>Due today ${money(dueNow)} · total ${money(total)}</span></span><button type="button" class="go" id="mnext">Continue</button>`
+        :`<span class="meta"><b>Pick a time</b><span>${S.players} players · ${d[0]}, Nov ${d[1]}</span></span><button type="button" class="go" disabled>Continue</button>`;
+      const mn=B.querySelector('#mnext'); if(mn) mn.onclick=()=>{set({step:2});window.scrollTo({top:0,behavior:'smooth'});};
+    } else {
+      B.innerHTML=`<span class="meta"><b>Due today ${money(dueNow)}</b><span>${S.pay==='full'?'Full amount':'Deposit for 2 · rest later'} · total ${money(total)}</span></span><button type="button" class="go" id="mpay">Pay &amp; confirm</button>`;
+      B.querySelector('#mpay').onclick=()=>document.getElementById('details').requestSubmit();
+    }
+  }
 }
 render();
 </script>

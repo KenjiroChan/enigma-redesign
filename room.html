@@ -11,23 +11,23 @@ body{margin:0;background:#0D0B12}
 a{color:#C4B0FF}a:hover{color:#DDD1FF}
 *{box-sizing:border-box}
 </style>
-<style>
-@media (max-width: 720px){
- h1{font-size:54px !important;line-height:0.95 !important}
- h2{font-size:38px !important}
- nav{gap:14px !important}
- nav > div{gap:14px 18px !important}
- section{padding-left:20px !important;padding-right:20px !important}
- header > nav, header > div{padding-left:20px !important;padding-right:20px !important}
- section[aria-labelledby="groups-h"] > div{padding:28px !important}
-}
-</style>
+<link rel="stylesheet" href="mobile.css">
 </head>
 <body>
-<div role="note" style="background: #C9B3FF; color: #120A24; font: 500 14px/1.45 'IBM Plex Sans', sans-serif; padding: 10px 20px; text-align: center">Concept redesign by Kenjiro Chan for a UX portfolio. This is not the official Enigma Escape Room website and nothing here can be booked. To book a real game, visit <a href="https://www.enigmaroom.ca" style="color: #120A24; font-weight: 600">enigmaroom.ca</a>.</div>
+<div role="note" style="background: #C9B3FF; color: #120A24; font: 500 14px/1.45 'IBM Plex Sans', sans-serif; padding: 10px 20px; text-align: center"><span class="bfull">Concept redesign by Kenjiro Chan for a UX portfolio. This is not the official Enigma Escape Room website and nothing here can be booked. To book a real game, visit <a href="https://www.enigmaroom.ca" style="color: #120A24; font-weight: 600">enigmaroom.ca</a>.</span><span class="bshort">Portfolio concept by Kenjiro Chan, not the official site. Book real games at <a href="https://www.enigmaroom.ca" style="color: #120A24; font-weight: 600">enigmaroom.ca</a>.</span></div>
+<div class="mhead">
+<a href="index.html" class="logo" aria-label="Enigma Escape Room, home"><svg aria-hidden="true" width="20" height="25" viewBox="0 0 30 36" style="fill: #A685FF"><circle cx="15" cy="12" r="9"></circle><path d="M10 18 L20 18 L23 34 L7 34 Z"></path><circle cx="15" cy="12" r="3.2" style="fill: #0D0B12"></circle></svg>ENIGMA</a>
+<div class="right">
+<a href="tel:16477693628" class="iconbtn" aria-label="Call Enigma"><svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" style="fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round"><path d="M5 3h4l2 5-2.5 1.5a11 11 0 0 0 6 6L16 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 5a2 2 0 0 1 2-2"></path></svg></a>
+<details><summary><span><svg aria-hidden="true" width="16" height="12" viewBox="0 0 18 14" style="fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round"><path d="M1 1h16M1 7h16M1 13h16"></path></svg>Menu</span></summary>
+<nav aria-label="Mobile">
+<a href="index.html#rooms">Rooms</a><a href="book.html">Book a room</a><a href="groups.html">Groups &amp; parties</a><a href="index.html#visit">Visit &amp; FAQ</a><a href="#">Gift cards</a><a href="tel:16477693628" class="call">Call 647-769-3628</a>
+</nav></details>
+</div>
+</div>
 <div style="background: #0D0B12; color: #F1ECF8; font-family: 'IBM Plex Sans', sans-serif; font-size: 16px; line-height: 1.55">
 
-<header style="border-bottom: 1px solid #2A2436">
+<header class="dhead" style="border-bottom: 1px solid #2A2436">
 <nav aria-label="Main" style="max-width: 1200px; margin: 0 auto; padding: 18px 40px; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px">
 <a href="index.html" style="display: flex; align-items: center; gap: 10px; text-decoration: none; color: #F1ECF8"><svg aria-hidden="true" width="26" height="32" viewBox="0 0 30 36" style="fill: #A685FF"><circle cx="15" cy="12" r="9"></circle><path d="M10 18 L20 18 L23 34 L7 34 Z"></path><circle cx="15" cy="12" r="3.2" style="fill: #0D0B12"></circle></svg><span style="font-family: 'Big Shoulders Display', 'Oswald', sans-serif; font-weight: 800; text-transform: uppercase; line-height: 1; letter-spacing: 0.22em; font-size: 24px">ENIGMA</span></a>
 <div style="display: flex; flex-wrap: wrap; align-items: center; gap: 28px; font-size: 15px">
@@ -44,11 +44,11 @@ a{color:#C4B0FF}a:hover{color:#DDD1FF}
 
 <section style="max-width: 1200px; margin: 0 auto; padding: 24px 40px 48px; display: flex; flex-wrap: wrap; gap: 40px">
 <div style="flex: 1 1 540px; min-width: 0; display: flex; flex-direction: column; gap: 12px">
-<div style="height: 440px; border-radius: 20px; background: #2A1612; border: 1px solid #3A2A3A; position: relative; display: flex; align-items: center; justify-content: center">
+<div class="gallery-main" style="height: 440px; border-radius: 20px; background: #2A1612; border: 1px solid #3A2A3A; position: relative; display: flex; align-items: center; justify-content: center">
 <span style="position: absolute; left: 20px; top: 18px; font-family: 'IBM Plex Mono', monospace; font-size: 12px; letter-spacing: 0.12em; color: #F1ECF8">ROTOR II · No.06</span>
 <span style="font-family: 'IBM Plex Mono', monospace; font-size: 12px; color: #CEC6DD">[ Room photography: wide shot of the set ]</span>
 </div>
-<div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px">
+<div class="gallery-thumbs" style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px">
 <div style="height: 110px; border-radius: 12px; background: #1F1726; border: 1px solid #3A2A3A"></div>
 <div style="height: 110px; border-radius: 12px; background: #1F1726; border: 1px solid #3A2A3A"></div>
 <div style="height: 110px; border-radius: 12px; background: #1F1726; border: 1px solid #3A2A3A; display: flex; align-items: center; justify-content: center; font-size: 13px; color: #CEC6DD">▶ 20-sec teaser</div>
@@ -77,7 +77,7 @@ a{color:#C4B0FF}a:hover{color:#DDD1FF}
 <div style="background: #16131D; border: 1px solid #372F47; border-radius: 20px; padding: 32px; display: flex; flex-wrap: wrap; gap: 32px">
 <div style="flex: 999 1 520px; min-width: 0; display: flex; flex-direction: column; gap: 18px">
 <h2 id="times-h" style="margin: 0; font-family: 'Big Shoulders Display', 'Oswald', sans-serif; font-size: 38px; font-weight: 800; text-transform: uppercase; line-height: 1">Open times for Exorcist</h2>
-<div role="group" aria-label="Date" style="display: flex; flex-wrap: wrap; gap: 6px">
+<div role="group" aria-label="Date" class="hscroll" style="display: flex; flex-wrap: wrap; gap: 6px">
 <button type="button" aria-pressed="false" style="width: 64px; min-height: 60px; border-radius: 10px; border: 1px solid #372F47; background: #0D0B12; color: #F1ECF8; font: 500 13px 'IBM Plex Sans', sans-serif; display: flex; flex-direction: column; align-items: center; justify-content: center"><span style="color: #A79FBA">Wed</span><b style="font-size: 18px">18</b></button>
 <button type="button" aria-pressed="false" style="width: 64px; min-height: 60px; border-radius: 10px; border: 1px solid #372F47; background: #0D0B12; color: #F1ECF8; font: 500 13px 'IBM Plex Sans', sans-serif; display: flex; flex-direction: column; align-items: center; justify-content: center"><span style="color: #A79FBA">Thu</span><b style="font-size: 18px">19</b></button>
 <button type="button" aria-pressed="true" style="width: 64px; min-height: 60px; border-radius: 10px; border: 1px solid #C9B3FF; background: #C9B3FF; color: #120A24; box-shadow: 0 0 20px rgba(150,110,255,0.35); font: 500 13px 'IBM Plex Sans', sans-serif; display: flex; flex-direction: column; align-items: center; justify-content: center"><span>Fri</span><b style="font-size: 18px">20</b></button>
@@ -85,7 +85,7 @@ a{color:#C4B0FF}a:hover{color:#DDD1FF}
 <button type="button" aria-pressed="false" style="width: 64px; min-height: 60px; border-radius: 10px; border: 1px solid #372F47; background: #0D0B12; color: #F1ECF8; font: 500 13px 'IBM Plex Sans', sans-serif; display: flex; flex-direction: column; align-items: center; justify-content: center"><span style="color: #A79FBA">Sun</span><b style="font-size: 18px">22</b></button>
 <a href="#" style="align-self: center; margin-left: 8px; font-size: 14px; font-weight: 600">Pick another date</a>
 </div>
-<div role="group" aria-label="Times" style="display: flex; flex-wrap: wrap; gap: 8px">
+<div role="group" aria-label="Times" class="hscroll" style="display: flex; flex-wrap: wrap; gap: 8px">
 <button type="button" style="min-width: 96px; min-height: 48px; border-radius: 8px; border: 1px solid #4A4060; background: transparent; color: #F1ECF8; font: 500 15px 'IBM Plex Sans', sans-serif">2:00 pm</button>
 <button type="button" style="min-width: 96px; min-height: 48px; border-radius: 8px; border: 1px solid #4A4060; background: transparent; color: #F1ECF8; font: 500 15px 'IBM Plex Sans', sans-serif">4:30 pm</button>
 <button type="button" aria-pressed="true" style="min-width: 96px; min-height: 48px; border-radius: 8px; border: 2px solid #EFE7FF; background: #C9B3FF; color: #120A24; box-shadow: 0 0 24px rgba(150,110,255,0.5); font: 600 15px 'IBM Plex Sans', sans-serif">7:00 pm</button>
@@ -115,6 +115,7 @@ a{color:#C4B0FF}a:hover{color:#DDD1FF}
 </div>
 </section>
 </div>
+<div class="mbar"><span class="meta"><b>Exorcist · Fri 7:00 pm</b><span>6 players · $85.86 deposit today</span></span><a href="book.html" class="go">Book this time</a></div>
 <script>
 document.querySelectorAll('form').forEach(f=>f.addEventListener('submit',e=>e.preventDefault()));
 document.querySelectorAll('a[href="#"]').forEach(a=>a.addEventListener('click',e=>e.preventDefault()));
