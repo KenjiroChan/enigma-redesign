@@ -1,0 +1,235 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Enigma Escape Room — Redesign concept by Kenjiro Chan</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@700;800&amp;family=IBM+Plex+Mono:wght@400;500&amp;family=IBM+Plex+Sans:wght@400;500;600&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0;background:#0D0B12}
+a{color:#C4B0FF}a:hover{color:#DDD1FF}
+*{box-sizing:border-box}
+</style>
+<style>
+@media (max-width: 720px){
+ h1{font-size:54px !important;line-height:0.95 !important}
+ h2{font-size:38px !important}
+ nav{gap:14px !important}
+ nav > div{gap:14px 18px !important}
+ section{padding-left:20px !important;padding-right:20px !important}
+ header > nav, header > div{padding-left:20px !important;padding-right:20px !important}
+ section[aria-labelledby="groups-h"] > div{padding:28px !important}
+}
+</style>
+</head>
+<body>
+<div role="note" style="background: #C9B3FF; color: #120A24; font: 500 14px/1.45 'IBM Plex Sans', sans-serif; padding: 10px 20px; text-align: center">Concept redesign by Kenjiro Chan for a UX portfolio. This is not the official Enigma Escape Room website and nothing here can be booked. To book a real game, visit <a href="https://www.enigmaroom.ca" style="color: #120A24; font-weight: 600">enigmaroom.ca</a>.</div>
+<div style="background: #0D0B12; color: #F1ECF8; font-family: 'IBM Plex Sans', sans-serif; font-size: 17px; line-height: 1.55">
+
+<header style="border-bottom: 1px solid #2A2436">
+<nav aria-label="Main" style="max-width: 1240px; margin: 0 auto; padding: 16px 40px; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px">
+<a href="index.html" aria-label="Enigma Escape Room, home" style="display: flex; align-items: center; gap: 12px; text-decoration: none; color: #F1ECF8">
+<svg aria-hidden="true" width="30" height="36" viewBox="0 0 30 36" style="fill: #A685FF"><circle cx="15" cy="12" r="9"></circle><path d="M10 18 L20 18 L23 34 L7 34 Z"></path><circle cx="15" cy="12" r="3.2" style="fill: #0D0B12"></circle></svg>
+<span style="display: flex; flex-direction: column; line-height: 1"><span style="font-family: 'Big Shoulders Display', 'Oswald', sans-serif; font-weight: 800; letter-spacing: 0.16em; font-size: 26px">ENIGMA</span><span style="font-family: 'IBM Plex Mono', monospace; font-size: 10px; letter-spacing: 0.24em; color: #A79FBA; margin-top: 3px">ESCAPE ROOM · TORONTO</span></span>
+</a>
+<div style="display: flex; flex-wrap: wrap; align-items: center; gap: 30px; font-size: 16px; font-weight: 500">
+<a href="#rooms" style="color: #F1ECF8; text-decoration: none">Rooms</a>
+<a href="groups.html" style="color: #F1ECF8; text-decoration: none">Groups &amp; parties</a>
+<a href="#visit" style="color: #F1ECF8; text-decoration: none">Visit &amp; FAQ</a>
+<a href="#" style="color: #F1ECF8; text-decoration: none">Gift cards</a>
+<a href="tel:16477693628" style="color: #CEC6DD; text-decoration: none; font-family: 'IBM Plex Mono', monospace; font-size: 15px">647-769-3628</a>
+<a href="book.html" style="background: #7445F5; color: #FFFFFF; text-decoration: none; padding: 0 22px; border-radius: 6px; font-weight: 600; min-height: 46px; display: inline-flex; align-items: center; box-shadow: inset 0 -3px 0 #4A25B8">Book a room</a>
+</div>
+</nav>
+</header>
+
+<section style="max-width: 1240px; margin: 0 auto; padding: 64px 40px 72px; display: flex; flex-wrap: wrap; gap: 56px; align-items: center">
+<div style="flex: 1 1 580px; min-width: 0; display: flex; flex-direction: column; gap: 26px">
+<p aria-hidden="true" style="margin: 0; font-family: 'IBM Plex Mono', monospace; font-size: 14px; letter-spacing: 0.3em; color: #5C536F">RFPNCR · VA · GVZR</p>
+<h1 style="margin: 0; font-family: 'Big Shoulders Display', 'Oswald', sans-serif; font-weight: 800; font-size: 96px; line-height: 0.92; letter-spacing: 0.005em; text-transform: uppercase">Crack the code before the hour runs out.</h1>
+<p style="margin: 0; font-size: 20px; color: #CEC6DD; max-width: 600px">Nine private escape rooms on Dundas Street, beside TMU. Tell us when you're free and how many of you are coming, and we'll show you every room with an open time.</p>
+
+<form aria-label="Find an open room" style="background: #16131D; border: 1px solid #372F47; border-radius: 12px; padding: 10px; display: flex; flex-wrap: wrap; gap: 10px; align-items: stretch">
+<label style="flex: 1 1 170px; display: flex; flex-direction: column; justify-content: center; gap: 4px; padding: 10px 14px; background: #1F1A29; border-radius: 8px; font-family: 'IBM Plex Mono', monospace; font-size: 12px; letter-spacing: 0.12em; color: #A79FBA">DATE<select style="background: transparent; border: 0; color: #F1ECF8; font: 600 18px 'IBM Plex Sans', sans-serif; padding: 0"><option>Tonight</option><option selected>Fri, Nov 20</option><option>Sat, Nov 21</option></select></label>
+<div role="group" aria-label="Players" style="flex: 0 1 200px; display: flex; align-items: center; justify-content: space-between; gap: 6px; padding: 6px; background: #1F1A29; border-radius: 8px">
+<button type="button" aria-label="One fewer player" style="width: 44px; height: 52px; border: 0; border-radius: 6px; background: #2A2436; color: #F1ECF8; font-size: 22px">−</button>
+<span style="display: flex; flex-direction: column; align-items: center; line-height: 1"><span style="font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: 0.12em; color: #A79FBA">PLAYERS</span><span style="display: flex; align-items: baseline; gap: 6px; margin-top: 4px"><span aria-hidden="true" style="font-family: 'IBM Plex Mono', monospace; font-size: 13px; color: #5C536F">5</span><b style="font-family: 'Big Shoulders Display', 'Oswald', sans-serif; font-size: 34px">6</b><span aria-hidden="true" style="font-family: 'IBM Plex Mono', monospace; font-size: 13px; color: #5C536F">7</span></span></span>
+<button type="button" aria-label="One more player" style="width: 44px; height: 52px; border: 0; border-radius: 6px; background: #2A2436; color: #F1ECF8; font-size: 22px">+</button>
+</div>
+<label style="flex: 1 1 170px; display: flex; flex-direction: column; justify-content: center; gap: 4px; padding: 10px 14px; background: #1F1A29; border-radius: 8px; font-family: 'IBM Plex Mono', monospace; font-size: 12px; letter-spacing: 0.12em; color: #A79FBA">SCARY?<select style="background: transparent; border: 0; color: #F1ECF8; font: 600 18px 'IBM Plex Sans', sans-serif; padding: 0"><option>Either is fine</option><option>Not scary</option><option>Scary, please</option></select></label>
+<a href="book.html" style="flex: 1 1 180px; background: #7445F5; color: #FFFFFF; text-decoration: none; padding: 0 22px; border-radius: 8px; font-weight: 600; font-size: 18px; min-height: 64px; display: inline-flex; align-items: center; justify-content: center; box-shadow: inset 0 -4px 0 #4A25B8">Show open times</a>
+</form>
+
+<ul aria-label="Good to know" style="list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 10px 32px; font-size: 15px; color: #CEC6DD">
+<li><b style="color: #F1ECF8">★ 4.8</b> from 1,480 Google reviews</li>
+<li>Every booking is <b style="color: #F1ECF8">private</b> to your group</li>
+<li><b style="color: #F1ECF8">$37.99</b> per person + tax · 60 min</li>
+</ul>
+</div>
+
+<aside aria-labelledby="next-h" style="flex: 1 1 400px; min-width: 0; background: #16131D; border: 1px solid #372F47; border-radius: 14px; overflow: hidden; align-self: center">
+<div style="display: flex; justify-content: space-between; align-items: center; gap: 12px; padding: 16px 20px; background: #1F1A29">
+<h2 id="next-h" style="margin: 0; font-family: 'IBM Plex Mono', monospace; font-weight: 500; font-size: 13px; letter-spacing: 0.16em; color: #C4B0FF">OPEN NEXT · TONIGHT</h2>
+<span style="font-family: 'IBM Plex Mono', monospace; font-size: 12px; color: #A79FBA">FRI, NOV 20</span>
+</div>
+<ul style="list-style: none; margin: 0; padding: 0">
+<li style="border-top: 1px solid #2A2436"><a href="book.html" style="display: flex; align-items: center; gap: 16px; padding: 12px 20px; text-decoration: none; color: #F1ECF8; min-height: 84px">
+<span style="flex: 0 0 60px; height: 60px; border-radius: 50%; border: 2px solid #4A4060; background: #1F1A29; box-shadow: inset 0 -4px 0 #120F18; display: flex; flex-direction: column; align-items: center; justify-content: center; line-height: 1"><b style="font-size: 16px">7:00</b><span style="font-size: 11px; color: #A79FBA; margin-top: 2px">pm</span></span>
+<span style="flex: 1 1 auto; min-width: 0; display: flex; flex-direction: column; gap: 6px"><span style="font: 800 24px/1 'Big Shoulders Display', 'Oswald', sans-serif; text-transform: uppercase">Godfather</span><span style="display: flex; align-items: center; gap: 10px; font-size: 14px; color: #CEC6DD"><span style="font-family: 'IBM Plex Mono', monospace; font-size: 11px; padding: 3px 7px; border-radius: 4px; background: #1A2A21; color: #8FC7A4">NOT SCARY</span>fits 2–10</span></span>
+<span aria-hidden="true" style="color: #A79FBA; font-size: 20px">→</span>
+</a></li>
+<li style="border-top: 1px solid #2A2436"><a href="book.html" style="display: flex; align-items: center; gap: 16px; padding: 12px 20px; text-decoration: none; color: #F1ECF8; min-height: 84px">
+<span style="flex: 0 0 60px; height: 60px; border-radius: 50%; border: 2px solid #4A4060; background: #1F1A29; box-shadow: inset 0 -4px 0 #120F18; display: flex; flex-direction: column; align-items: center; justify-content: center; line-height: 1"><b style="font-size: 16px">7:00</b><span style="font-size: 11px; color: #A79FBA; margin-top: 2px">pm</span></span>
+<span style="flex: 1 1 auto; min-width: 0; display: flex; flex-direction: column; gap: 6px"><span style="font: 800 24px/1 'Big Shoulders Display', 'Oswald', sans-serif; text-transform: uppercase">Exorcist</span><span style="display: flex; align-items: center; gap: 10px; font-size: 14px; color: #CEC6DD"><span style="font-family: 'IBM Plex Mono', monospace; font-size: 11px; padding: 3px 7px; border-radius: 4px; background: #2E1A1A; color: #EE7F68">SCARY</span>up to 10</span></span>
+<span aria-hidden="true" style="color: #A79FBA; font-size: 20px">→</span>
+</a></li>
+<li style="border-top: 1px solid #2A2436"><a href="book.html" style="display: flex; align-items: center; gap: 16px; padding: 12px 20px; text-decoration: none; color: #F1ECF8; min-height: 84px">
+<span style="flex: 0 0 60px; height: 60px; border-radius: 50%; border: 2px solid #4A4060; background: #1F1A29; box-shadow: inset 0 -4px 0 #120F18; display: flex; flex-direction: column; align-items: center; justify-content: center; line-height: 1"><b style="font-size: 16px">8:15</b><span style="font-size: 11px; color: #A79FBA; margin-top: 2px">pm</span></span>
+<span style="flex: 1 1 auto; min-width: 0; display: flex; flex-direction: column; gap: 6px"><span style="font: 800 24px/1 'Big Shoulders Display', 'Oswald', sans-serif; text-transform: uppercase">The Lost Treasure</span><span style="display: flex; align-items: center; gap: 10px; font-size: 14px; color: #CEC6DD"><span style="font-family: 'IBM Plex Mono', monospace; font-size: 11px; padding: 3px 7px; border-radius: 4px; background: #1A2A21; color: #8FC7A4">NOT SCARY</span>fits 2–10</span></span>
+<span aria-hidden="true" style="color: #A79FBA; font-size: 20px">→</span>
+</a></li>
+<li style="border-top: 1px solid #2A2436"><a href="book.html" style="display: flex; align-items: center; gap: 16px; padding: 12px 20px; text-decoration: none; color: #F1ECF8; min-height: 84px">
+<span style="flex: 0 0 60px; height: 60px; border-radius: 50%; border: 2px solid #4A4060; background: #1F1A29; box-shadow: inset 0 -4px 0 #120F18; display: flex; flex-direction: column; align-items: center; justify-content: center; line-height: 1"><b style="font-size: 16px">8:15</b><span style="font-size: 11px; color: #A79FBA; margin-top: 2px">pm</span></span>
+<span style="flex: 1 1 auto; min-width: 0; display: flex; flex-direction: column; gap: 6px"><span style="font: 800 24px/1 'Big Shoulders Display', 'Oswald', sans-serif; text-transform: uppercase">Hannibal</span><span style="display: flex; align-items: center; gap: 10px; font-size: 14px; color: #CEC6DD"><span style="font-family: 'IBM Plex Mono', monospace; font-size: 11px; padding: 3px 7px; border-radius: 4px; background: #2E1A1A; color: #EE7F68">SCARY</span>up to 9</span></span>
+<span aria-hidden="true" style="color: #A79FBA; font-size: 20px">→</span>
+</a></li>
+<li style="border-top: 1px solid #2A2436"><a href="book.html" style="display: flex; align-items: center; gap: 16px; padding: 12px 20px; text-decoration: none; color: #F1ECF8; min-height: 84px">
+<span style="flex: 0 0 60px; height: 60px; border-radius: 50%; border: 2px solid #4A4060; background: #1F1A29; box-shadow: inset 0 -4px 0 #120F18; display: flex; flex-direction: column; align-items: center; justify-content: center; line-height: 1"><b style="font-size: 16px">9:30</b><span style="font-size: 11px; color: #A79FBA; margin-top: 2px">pm</span></span>
+<span style="flex: 1 1 auto; min-width: 0; display: flex; flex-direction: column; gap: 6px"><span style="font: 800 24px/1 'Big Shoulders Display', 'Oswald', sans-serif; text-transform: uppercase">Jungle Safari</span><span style="display: flex; align-items: center; gap: 10px; font-size: 14px; color: #CEC6DD"><span style="font-family: 'IBM Plex Mono', monospace; font-size: 11px; padding: 3px 7px; border-radius: 4px; background: #1A2A21; color: #8FC7A4">NOT SCARY</span>fits 2–10</span></span>
+<span aria-hidden="true" style="color: #A79FBA; font-size: 20px">→</span>
+</a></li>
+</ul>
+<div style="border-top: 1px solid #2A2436; padding: 14px 20px; display: flex; justify-content: space-between; align-items: center; font-size: 14px; color: #A79FBA"><span>Times are illustrative</span><a href="book.html" style="font-weight: 600">Every time tonight →</a></div>
+</aside>
+</section>
+
+<section aria-labelledby="vibes-h" style="border-top: 1px solid #2A2436; border-bottom: 1px solid #2A2436; background: #120F18">
+<div style="max-width: 1240px; margin: 0 auto; padding: 64px 40px">
+<div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-end; gap: 16px; margin-bottom: 32px">
+<h2 id="vibes-h" style="margin: 0; font-family: 'Big Shoulders Display', 'Oswald', sans-serif; font-weight: 800; font-size: 54px; line-height: 1; text-transform: uppercase">Choose your rotor</h2>
+<p style="margin: 0; color: #CEC6DD; max-width: 520px">Our rooms come in three kinds. The kind tells you more than the theme does about whether a room suits your group.</p>
+</div>
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px">
+<a href="#rooms" style="text-decoration: none; color: #F1ECF8; border: 1px solid #372F47; border-radius: 12px; padding: 28px; display: flex; flex-direction: column; gap: 14px; background: #16131D">
+<span style="display: flex; justify-content: space-between; align-items: center"><span style="width: 64px; height: 64px; border-radius: 50%; border: 2px solid #8FC7A4; display: inline-flex; align-items: center; justify-content: center; font-family: 'Big Shoulders Display', 'Oswald', sans-serif; font-weight: 800; font-size: 30px; color: #8FC7A4">I</span><span style="font-family: 'IBM Plex Mono', monospace; font-size: 13px; padding: 6px 10px; border-radius: 4px; background: #15241B; color: #8FC7A4">NOT SCARY</span></span>
+<span style="font-family: 'Big Shoulders Display', 'Oswald', sans-serif; font-weight: 700; font-size: 32px; text-transform: uppercase; line-height: 1">Adventure</span>
+<span style="color: #CEC6DD; font-size: 16px">Jungle Safari, The Lost Treasure and Godfather. Story-driven rooms for families, first-timers and groups of up to 10.</span>
+<span style="font-weight: 600; color: #8FC7A4">See 3 rooms →</span>
+</a>
+<a href="#rooms" style="text-decoration: none; color: #F1ECF8; border: 1px solid #372F47; border-radius: 12px; padding: 28px; display: flex; flex-direction: column; gap: 14px; background: #16131D">
+<span style="display: flex; justify-content: space-between; align-items: center"><span style="width: 64px; height: 64px; border-radius: 50%; border: 2px solid #EE7F68; display: inline-flex; align-items: center; justify-content: center; font-family: 'Big Shoulders Display', 'Oswald', sans-serif; font-weight: 800; font-size: 30px; color: #EE7F68">II</span><span style="font-family: 'IBM Plex Mono', monospace; font-size: 13px; padding: 6px 10px; border-radius: 4px; background: #2A1612; color: #EE7F68">SCARY</span></span>
+<span style="font-family: 'Big Shoulders Display', 'Oswald', sans-serif; font-weight: 700; font-size: 32px; text-transform: uppercase; line-height: 1">Dark &amp; Thrilling</span>
+<span style="color: #CEC6DD; font-size: 16px">Haunted Toy Store, Hannibal and Exorcist. Darkness and sound do the work, and no actors chase or touch you.</span>
+<span style="font-weight: 600; color: #EE7F68">See 3 rooms →</span>
+</a>
+<a href="#rooms" style="text-decoration: none; color: #F1ECF8; border: 1px solid #372F47; border-radius: 12px; padding: 28px; display: flex; flex-direction: column; gap: 14px; background: #16131D">
+<span style="display: flex; justify-content: space-between; align-items: center"><span style="width: 64px; height: 64px; border-radius: 50%; border: 2px solid #9DB8D9; display: inline-flex; align-items: center; justify-content: center; font-family: 'Big Shoulders Display', 'Oswald', sans-serif; font-weight: 800; font-size: 30px; color: #9DB8D9">III</span><span style="font-family: 'IBM Plex Mono', monospace; font-size: 13px; padding: 6px 10px; border-radius: 4px; background: #151C26; color: #9DB8D9">2–7 PLAYERS</span></span>
+<span style="font-family: 'Big Shoulders Display', 'Oswald', sans-serif; font-weight: 700; font-size: 32px; text-transform: uppercase; line-height: 1">Escape Cubes</span>
+<span style="color: #CEC6DD; font-size: 16px">Bomb Squad, Fairytale and Magic School. A full game packed into one compact room, best for small teams who've played before.</span>
+<span style="font-weight: 600; color: #9DB8D9">See 3 rooms →</span>
+</a>
+</div>
+</div>
+</section>
+
+<section id="rooms" aria-labelledby="rooms-h" style="max-width: 1240px; margin: 0 auto; padding: 72px 40px 24px">
+<div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-end; gap: 16px; margin-bottom: 28px">
+<div>
+<h2 id="rooms-h" style="margin: 0 0 8px; font-family: 'Big Shoulders Display', 'Oswald', sans-serif; font-weight: 800; font-size: 54px; line-height: 1; text-transform: uppercase">All nine rooms</h2>
+<p style="margin: 0; color: #CEC6DD">Every room runs 60 minutes and costs $37.99 per person before tax.</p>
+</div>
+<div role="group" aria-label="Filter rooms" id="filters" style="display: flex; flex-wrap: wrap; gap: 8px"></div>
+</div>
+<div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(270px, 1fr)); gap: 20px" id="rooms-grid"></div>
+</section>
+
+<section aria-labelledby="how-h" style="max-width: 1240px; margin: 0 auto; padding: 72px 40px 24px">
+<h2 id="how-h" style="margin: 0 0 28px; font-family: 'Big Shoulders Display', 'Oswald', sans-serif; font-weight: 800; font-size: 54px; line-height: 1; text-transform: uppercase">How a visit works</h2>
+<ol style="list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px">
+<li style="border-top: 2px solid #7445F5; padding-top: 18px; display: flex; flex-direction: column; gap: 8px"><span style="font-family: 'IBM Plex Mono', monospace; font-size: 14px; color: #C4B0FF">01 · BOOK</span><span style="font-size: 20px; font-weight: 600">Book online in about a minute</span><span style="color: #CEC6DD; font-size: 16px">Pay now or at the desk. Cancel 48 hours or more ahead for a full refund, and add players later by telling us at check-in.</span></li>
+<li style="border-top: 2px solid #7445F5; padding-top: 18px; display: flex; flex-direction: column; gap: 8px"><span style="font-family: 'IBM Plex Mono', monospace; font-size: 14px; color: #C4B0FF">02 · ARRIVE</span><span style="font-size: 20px; font-weight: 600">Get here 10 minutes early</span><span style="color: #CEC6DD; font-size: 16px">We're on the 3rd floor of 130 Dundas St W, near Dundas station. [Add entrance and elevator details.]</span></li>
+<li style="border-top: 2px solid #7445F5; padding-top: 18px; display: flex; flex-direction: column; gap: 8px"><span style="font-family: 'IBM Plex Mono', monospace; font-size: 14px; color: #C4B0FF">03 · PLAY</span><span style="font-size: 20px; font-weight: 600">Sixty minutes on the clock</span><span style="color: #CEC6DD; font-size: 16px">A game master briefs your group and watches over the room the whole time. [Confirm how hints work.]</span></li>
+</ol>
+</section>
+
+<section aria-labelledby="groups-h" style="max-width: 1240px; margin: 0 auto; padding: 72px 40px 24px">
+<div style="background: #2A1A55; color: #F1ECF8; border-radius: 14px; border: 1px solid #4A3590; padding: 44px; display: flex; flex-wrap: wrap; gap: 32px; align-items: center; justify-content: space-between">
+<div style="flex: 1 1 520px; min-width: 0; display: flex; flex-direction: column; gap: 10px">
+<p style="margin: 0; font-family: 'IBM Plex Mono', monospace; font-size: 13px; letter-spacing: 0.14em">BIRTHDAYS · TEAM BUILDING · PROPOSALS</p>
+<h2 id="groups-h" style="margin: 0; font-family: 'Big Shoulders Display', 'Oswald', sans-serif; font-weight: 800; font-size: 46px; line-height: 0.98; text-transform: uppercase">More than ten of you? We'll run rooms side by side.</h2>
+<p style="margin: 0; font-size: 17px">Send your group size and a date, and we'll reply with a plan and a quote.</p>
+</div>
+<a href="groups.html" style="background: #7445F5; color: #FFFFFF; text-decoration: none; padding: 0 26px; box-shadow: inset 0 -4px 0 #4A25B8; border-radius: 8px; font-weight: 600; min-height: 56px; display: inline-flex; align-items: center">Plan a group visit</a>
+</div>
+</section>
+
+<section aria-labelledby="rev-h" style="max-width: 1240px; margin: 0 auto; padding: 72px 40px 24px">
+<div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-end; gap: 16px; margin-bottom: 24px">
+<h2 id="rev-h" style="margin: 0; font-family: 'Big Shoulders Display', 'Oswald', sans-serif; font-weight: 800; font-size: 54px; line-height: 1; text-transform: uppercase">4.8 stars, 1,480 reviews</h2>
+<a href="#" style="font-weight: 600">Read them on Google</a>
+</div>
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px">
+<figure style="margin: 0; border-left: 2px solid #372F47; padding: 4px 0 4px 22px; display: flex; flex-direction: column; gap: 12px"><span style="font-family: 'IBM Plex Mono', monospace; font-size: 12px; letter-spacing: 0.1em; color: #A79FBA">ROOM · GODFATHER</span><blockquote style="margin: 0; font-size: 18px">[ A real recent Google review that names a room, with its actual date ]</blockquote><figcaption style="color: #A79FBA; font-size: 14px">Reviewer · Month Year</figcaption></figure>
+<figure style="margin: 0; border-left: 2px solid #372F47; padding: 4px 0 4px 22px; display: flex; flex-direction: column; gap: 12px"><span style="font-family: 'IBM Plex Mono', monospace; font-size: 12px; letter-spacing: 0.1em; color: #A79FBA">ROOM · EXORCIST</span><blockquote style="margin: 0; font-size: 18px">[ A review from a nervous first-timer, so scared guests know what to expect ]</blockquote><figcaption style="color: #A79FBA; font-size: 14px">Reviewer · Month Year</figcaption></figure>
+<figure style="margin: 0; border-left: 2px solid #372F47; padding: 4px 0 4px 22px; display: flex; flex-direction: column; gap: 12px"><span style="font-family: 'IBM Plex Mono', monospace; font-size: 12px; letter-spacing: 0.1em; color: #A79FBA">TEAM EVENT</span><blockquote style="margin: 0; font-size: 18px">[ A review from a corporate or birthday group ]</blockquote><figcaption style="color: #A79FBA; font-size: 14px">Reviewer · Month Year</figcaption></figure>
+</div>
+</section>
+
+<section id="visit" aria-labelledby="visit-h" style="max-width: 1240px; margin: 0 auto; padding: 72px 40px 24px; display: flex; flex-wrap: wrap; gap: 48px">
+<div style="flex: 1 1 420px; min-width: 0; display: flex; flex-direction: column; gap: 22px">
+<h2 id="visit-h" style="margin: 0; font-family: 'Big Shoulders Display', 'Oswald', sans-serif; font-weight: 800; font-size: 54px; line-height: 1; text-transform: uppercase">Find us</h2>
+<dl style="margin: 0; display: grid; grid-template-columns: 110px 1fr; gap: 14px 20px; font-size: 16px">
+<dt style="font-family: 'IBM Plex Mono', monospace; font-size: 13px; letter-spacing: 0.1em; color: #A79FBA; padding-top: 3px">ADDRESS</dt><dd style="margin: 0">130 Dundas St W, 3rd floor<br>Toronto, ON M5G 1C3</dd>
+<dt style="font-family: 'IBM Plex Mono', monospace; font-size: 13px; letter-spacing: 0.1em; color: #A79FBA; padding-top: 3px">HOURS</dt><dd style="margin: 0">Mon–Thu 1 pm – midnight<br>Fri 1 pm – 1 am · Sat 11 am – 1 am<br>Sun 11 am – midnight</dd>
+<dt style="font-family: 'IBM Plex Mono', monospace; font-size: 13px; letter-spacing: 0.1em; color: #A79FBA; padding-top: 3px">CONTACT</dt><dd style="margin: 0"><a href="tel:16477693628">647-769-3628</a><br><a href="mailto:info@enigmaroom.ca">info@enigmaroom.ca</a></dd>
+<dt style="font-family: 'IBM Plex Mono', monospace; font-size: 13px; letter-spacing: 0.1em; color: #A79FBA; padding-top: 3px">ACCESS</dt><dd style="margin: 0">[Elevator, step-free route and sensory notes, confirmed with the owner]</dd>
+</dl>
+<a href="#" style="align-self: flex-start; border: 1px solid #372F47; color: #F1ECF8; text-decoration: none; padding: 0 20px; border-radius: 6px; min-height: 46px; display: inline-flex; align-items: center; font-weight: 600">Open in Google Maps</a>
+</div>
+<div style="flex: 1 1 460px; min-width: 0; display: flex; flex-direction: column">
+<h3 style="margin: 0 0 12px; font-size: 22px; font-weight: 600">What people ask us at the front desk</h3>
+<details style="border-top: 1px solid #372F47; padding: 16px 0"><summary style="cursor: pointer; font-weight: 600; font-size: 17px">Will it be too scary?</summary><p style="margin: 10px 0 0; color: #CEC6DD">Only the three Rotor II rooms are scary, and none use actors who chase or touch you. The other six aren't scary at all.</p></details>
+<details style="border-top: 1px solid #372F47; padding: 16px 0"><summary style="cursor: pointer; font-weight: 600; font-size: 17px">Will we be in a room with strangers?</summary><p style="margin: 10px 0 0; color: #CEC6DD">No. Every booking is private, so the only people in your room are the ones you bring.</p></details>
+<details style="border-top: 1px solid #372F47; padding: 16px 0"><summary style="cursor: pointer; font-weight: 600; font-size: 17px">Can kids play?</summary><p style="margin: 10px 0 0; color: #CEC6DD">Yes. Players aged 10 and under need an adult (18+) in the room with them.</p></details>
+<details style="border-top: 1px solid #372F47; padding: 16px 0"><summary style="cursor: pointer; font-weight: 600; font-size: 17px">What if we're running late?</summary><p style="margin: 10px 0 0; color: #CEC6DD">Call us as soon as you know. [State exactly how a late arrival affects game time.]</p></details>
+<details style="border-top: 1px solid #372F47; border-bottom: 1px solid #372F47; padding: 16px 0"><summary style="cursor: pointer; font-weight: 600; font-size: 17px">How do refunds work?</summary><p style="margin: 10px 0 0; color: #CEC6DD">Cancel 48 hours or more before your booking for a full refund. Cancellations inside 48 hours can't be refunded.</p></details>
+</div>
+</section>
+
+<footer style="margin-top: 80px; border-top: 1px solid #2A2436">
+<div style="max-width: 1240px; margin: 0 auto; padding: 36px 40px; display: flex; flex-wrap: wrap; gap: 20px 48px; justify-content: space-between; align-items: center; font-size: 15px; color: #A79FBA">
+<span>© 2026 Enigma Escape Room · 130 Dundas St W, Toronto</span>
+<nav aria-label="Footer" style="display: flex; flex-wrap: wrap; gap: 22px"><a href="#rooms" style="color: #CEC6DD">Rooms</a><a href="groups.html" style="color: #CEC6DD">Groups</a><a href="#" style="color: #CEC6DD">Gift cards</a><a href="#" style="color: #CEC6DD">Instagram</a><a href="#" style="color: #CEC6DD">TikTok</a><a href="#" style="color: #CEC6DD">Privacy</a><a href="#" style="color: #CEC6DD">Terms</a></nav>
+</div>
+</footer>
+</div>
+<script>
+document.querySelectorAll('form').forEach(f=>f.addEventListener('submit',e=>e.preventDefault()));
+document.querySelectorAll('a[href="#"]').forEach(a=>a.addEventListener('click',e=>e.preventDefault()));
+
+const rot13=s=>s.toUpperCase().replace(/[A-Z]/g,c=>String.fromCharCode((c.charCodeAt(0)-52)%26+65));
+const V={adv:{rotor:'I',tag:'NOT SCARY',bg:'#15241B',fg:'#8FC7A4'},dark:{rotor:'II',tag:'SCARY',bg:'#2A1612',fg:'#EE7F68'},cube:{rotor:'III',tag:'CUBE',bg:'#151C26',fg:'#9DB8D9'}};
+const W={3:'Medium',4:'Hard',5:'Expert'};
+const ROOMS=[['01','Jungle Safari','adv',5,'2–10 players'],['02','The Lost Treasure','adv',3,'2–10 players'],['03','Godfather','adv',4,'2–10 players'],['04','Haunted Toy Store','dark',3,'2–9 players'],['05','Hannibal','dark',5,'Up to 9 players'],['06','Exorcist','dark',4,'Up to 10 players'],['07','Bomb Squad','cube',5,'2–3 players'],['08','Fairytale','cube',4,'2–7 players'],['09','Magic School','cube',5,'Up to 7 players']];
+const DEFS=[['all','All rooms'],['adv','Not scary'],['dark','Scary'],['cube','Small teams'],['easy','First-timers']];
+let filter='all';
+function render(){
+ document.getElementById('filters').innerHTML=DEFS.map(([id,l])=>id===filter
+  ?`<button type="button" aria-pressed="true" data-f="${id}" style="min-height: 46px; padding: 0 18px; border-radius: 6px; border: 1px solid #C9B3FF; background: #C9B3FF; color: #120A24; font: 600 15px 'IBM Plex Sans', sans-serif; cursor: pointer; box-shadow: 0 0 18px rgba(150,110,255,0.35)">${l}</button>`
+  :`<button type="button" aria-pressed="false" data-f="${id}" style="min-height: 46px; padding: 0 18px; border-radius: 6px; border: 1px solid #372F47; background: #16131D; color: #F1ECF8; font: 500 15px 'IBM Plex Sans', sans-serif; cursor: pointer">${l}</button>`).join('');
+ const keep=(k,d)=>filter==='all'||filter===k||(filter==='easy'&&d<=3);
+ document.getElementById('rooms-grid').innerHTML=ROOMS.filter(r=>keep(r[2],r[3])).map(([no,name,k,d,p])=>{const v=V[k];
+  const bars=[1,2,3,4,5].map(i=>`<span style="width: 5px; height: 15px; background: ${i<=d?'#C4B0FF':'#372F47'}; display: inline-block"></span>`).join('');
+  return `<a href="room.html" style="text-decoration: none; color: #F1ECF8; background: #16131D; border: 1px solid #372F47; border-radius: 12px; overflow: hidden; display: flex; flex-direction: column">
+<div style="height: 180px; background: #1F1A29; position: relative; display: flex; align-items: center; justify-content: center; border-bottom: 1px solid #372F47"><span style="position: absolute; left: 14px; top: 12px; font-family: 'IBM Plex Mono', monospace; font-size: 12px; letter-spacing: 0.1em; color: #CEC6DD">ROTOR ${v.rotor} · No.${no}</span><span style="font-family: 'IBM Plex Mono', monospace; font-size: 12px; color: #A79FBA">[ room photo ]</span></div>
+<div style="padding: 18px 18px 20px; display: flex; flex-direction: column; gap: 10px"><span style="font-family: 'Big Shoulders Display', 'Oswald', sans-serif; font-weight: 800; font-size: 30px; line-height: 1; text-transform: uppercase">${name}</span><span aria-hidden="true" style="font-family: 'IBM Plex Mono', monospace; font-size: 12px; letter-spacing: 0.24em; color: #5C536F; margin-top: -4px">${rot13(name)}</span>
+<span style="display: flex; flex-wrap: wrap; align-items: center; gap: 8px 14px; font-size: 15px; color: #CEC6DD"><span style="font-family: 'IBM Plex Mono', monospace; font-size: 12px; padding: 4px 8px; border-radius: 4px; background: ${v.bg}; color: ${v.fg}">${v.tag}</span><span style="display: inline-flex; align-items: center; gap: 7px"><span aria-hidden="true" style="display: inline-flex; gap: 3px">${bars}</span>${d}/5 ${W[d]}</span><span>${p}</span></span></div></a>`}).join('');
+ document.querySelectorAll('#filters button').forEach(b=>b.onclick=()=>{filter=b.dataset.f;render();});
+}
+render();
+
+</script>
+</body>
+</html>
